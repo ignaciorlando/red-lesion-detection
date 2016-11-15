@@ -1,17 +1,15 @@
-clear
-clc
+
+% CONFIG_OPTIMIZE_NUMBER_OF_PXS
+% -------------------------------------------------------------------------
+% This code is used to compute FPI and per lesion sensitivity for different
+% values of pxs. You have to edit config_optimize_number_of_pxs
+% to choose the values you want to explore. 
+% -------------------------------------------------------------------------
 
 config_optimize_number_of_pxs;
 
 % prepare root path of data sets
 root_path = fullfile(root_path, datasetName);
-% prepare dataset path
-dataset_path = fullfile(segm_path, datasetName);
-% prepare output path
-output_path = fullfile(dataset_path, 'ma_candidates');
-if (exist(output_path, 'dir') == 0)
-    mkdir(output_path);
-end
 
 % get image filenames
 img_names = getMultipleImagesFileNames(fullfile(root_path, 'images'));
@@ -19,12 +17,6 @@ img_names = getMultipleImagesFileNames(fullfile(root_path, 'images'));
 lbl_names = getMultipleImagesFileNames(fullfile(root_path, type_of_lesion));
 % get masks filenames
 mask_names = getMultipleImagesFileNames(fullfile(root_path, 'masks'));
-% get OD segmentations filenames
-od_names = getMultipleImagesFileNames(fullfile(dataset_path, 'manual-annotations', 'od-masks'));
-% get vessel segmentation nales
-segm_names = getMultipleImagesFileNames(fullfile(dataset_path, 'segmentations'));
-
-
 
 % initialize an array of per lesion sensitivities
 tp_lesions = zeros(length(pxs), length(img_names));

@@ -1,5 +1,12 @@
-clear
-clc
+
+% SCRIPT_OPTIMIZE_CANDIDATES_DETECTION
+% -------------------------------------------------------------------------
+% This code is used to compute FPI and per lesion sensitivity for different
+% values of L and K. You have to edit config_optimize_candidates_detection
+% to choose the parameters you want to explore. If you want to plot this
+% the evolution of these values you have to call 
+% script_plot_candidate_optimization_quality.
+% -------------------------------------------------------------------------
 
 config_optimize_candidates_detection;
 
