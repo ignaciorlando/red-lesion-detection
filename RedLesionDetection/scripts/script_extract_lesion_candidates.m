@@ -1,4 +1,10 @@
 
+% SCRIPT_EXTRACT_LESION_CANDIDATES
+% -------------------------------------------------------------------------
+% This code is used for extracting red lesion candidates from a given data
+% set.
+% -------------------------------------------------------------------------
+
 config_extract_lesion_candidates;
 
 % prepare root path of data sets
