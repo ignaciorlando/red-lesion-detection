@@ -1,0 +1,8 @@
+_odd_code/
+ConfigurationFiles/
+Experiments/
+util/external/
+Scripts/script_run_experiment_parameters.m
+*.mat
+*.asv
+*.DS_Store

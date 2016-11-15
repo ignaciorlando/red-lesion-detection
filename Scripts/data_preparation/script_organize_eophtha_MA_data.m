@@ -1,0 +1,85 @@
+
+config_organize_eophtha_MA_data;
+
+% prepare paths from the original data set 
+ma_labels_root = fullfile(root_path, 'e_optha_MA', 'Annotation_MA');
+healthy_set_root = fullfile(root_path, 'e_optha_MA', 'healthy');
+ma_set_root = fullfile(root_path, 'e_optha_MA', 'MA');
+
+% prepare paths for the outputs
+ma_labels_output = fullfile(output_folder, 'labels');
+images_output = fullfile(output_folder, 'images');
+mkdir(ma_labels_output);
+mkdir(images_output);
+
+% copy all the healthy images to a new folder, including a label mask with
+% all zeros
+healthy_dir_names = getMultipleImagesFileNames(healthy_set_root);
+counting_healthy_images = 0;
+for i = 1 : length(healthy_dir_names)
+    % fetch the folder
+    current_folder = fullfile(healthy_set_root, healthy_dir_names{i});
+    % get inner images
+    image_names = getMultipleImagesFileNames(current_folder);
+    % copy each image to the new folder
+    for j = 1 : length(image_names)
+        counting_healthy_images = counting_healthy_images + 1;
+        fprintf('Processing healthy image %d\n', counting_healthy_images);
+        % retrieve the first part of the name
+        [~, current_image_name, ext] = fileparts(image_names{j}) ;
+        if (strcmpi(ext, '.jpg') || strcmpi(ext, '.jpeg'))
+            ext = '.png';
+        end
+        % copy the file, changing the extension to PNG if the image in in
+        % JPG format
+        copyfile(fullfile(current_folder, image_names{j}), fullfile(images_output, strcat(current_image_name, ext)));
+        try
+           % open the image
+            I = imread(fullfile(current_folder, image_names{j}));
+            % create an empty mask
+            label = false(size(I,1), size(I,2));
+            % save the image
+            imwrite(label, fullfile(ma_labels_output, strcat(current_image_name, ext)));
+        catch exception
+        end
+    end
+    
+end
+
+% now, copy all the other images and their labels
+% images
+ma_set_names = getMultipleImagesFileNames(ma_set_root);
+% labels
+ma_labels_names = getMultipleImagesFileNames(ma_labels_root);
+counting_sick_images = 0;
+for i = 1 : length(ma_set_names)
+    % fetch the folder
+    current_folder = fullfile(ma_set_root, ma_set_names{i});
+    current_folder_label = fullfile(ma_labels_root, ma_set_names{i});
+    % get inner images and labels
+    sick_images_names = getMultipleImagesFileNames(current_folder);
+    sick_label_names = getMultipleImagesFileNames(current_folder_label);
+    % copy each image to the new folder
+    for j = 1 : length(sick_images_names);
+        counting_sick_images = counting_sick_images + 1;
+        fprintf('Processing sick image %d\n', counting_sick_images);
+        % retrieve the first part of the name
+        [~, current_image_name, ext] = fileparts(sick_images_names{j}) ;
+        if (strcmpi(ext, '.jpg') || strcmpi(ext, '.jpeg'))
+            ext = '.png';
+        end
+        % copy the file
+        copyfile(fullfile(current_folder, sick_images_names{j}), fullfile(images_output, strcat(current_image_name, ext)), 'f');
+        % retrieve the first part of the name
+        [~, current_label_name, ext] = fileparts(sick_label_names{j}) ;
+        if (strcmpi(ext, '.jpg') || strcmpi(ext, '.jpeg'))
+            ext = '.png';
+        end
+        copyfile(fullfile(current_folder_label, sick_label_names{j}), fullfile(ma_labels_output, strcat(current_label_name, ext)), 'f');
+    end
+end
+
+% now, generate fov masks
+root = output_folder;
+threshold = 0.15;
+GenerateFOVMasks;

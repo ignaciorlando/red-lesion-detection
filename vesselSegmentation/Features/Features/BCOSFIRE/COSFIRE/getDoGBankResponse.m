@@ -1,0 +1,16 @@
+function DoGBank = getDoGBankResponse(inputImage,params)
+
+sz = size(inputImage);
+
+DoGBank = zeros(sz(1),sz(2),length(params.sigmalist),length(params.polaritylist));
+
+for i = 1:length(params.sigmalist)
+    for j = 1:length(params.polaritylist)
+        DoGBank(:,:,i,j) = getDoG(inputImage, ...
+            params.sigmalist(i), ...
+            params.polaritylist(j), ...
+            params.sigmaratio, ...
+            0, ...
+            params.halfwaverect);
+    end
+end
