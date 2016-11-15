@@ -1,5 +1,5 @@
 
-config_get_ma_detection_training_set;
+config_get_red_lesion_detection_training_set;
 
 fprintf(strcat('Dataset: ', dataset_name, '\n'));
 
