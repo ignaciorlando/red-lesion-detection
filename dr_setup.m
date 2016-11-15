@@ -3,7 +3,7 @@ root = pwd ;
 
 % add to path all folder and libraries
 addpath(genpath(fullfile(root,'ConfigurationFiles'))) ;
-addpath(genpath(fullfile(root,'Features'))) ;
+addpath(genpath(fullfile(root,'RedLesionDetection'))) ;
 addpath(genpath(fullfile(root,'Learning'))) ;
 addpath(genpath(fullfile(root,'Scripts'))) ;
 addpath(genpath(fullfile(root,'vesselSegmentation'))) ;
