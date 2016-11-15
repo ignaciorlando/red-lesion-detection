@@ -1,4 +1,10 @@
 
+% SCRIPT_ORGANIZE_MESSIDOR_DATA
+% -------------------------------------------------------------------------
+% This script is used to organize MESSIDOR data. You must modify
+% config_organize_messidor_data before executing this script.
+% -------------------------------------------------------------------------
+
 config_organize_messidor_data
 
 % prepare paths from the original data set 

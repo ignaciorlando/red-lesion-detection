@@ -1,5 +1,13 @@
 
 function generate_red_lesion_ground_truth_annotations(ma_label_folder, hemorrhages_label_folder, red_lesion_folder, probability_threshold)
+% GENERATE_RED_LESION_GROUND_TRUTH_ANNOTATIONS  Generate red lesion ground
+% truth annotations (not only for red lesions but also for MA and HE).
+%       ma_label_folder: folder where MAs will be saved
+%       hemorrhages_label_folder: folder where HEs will be saved
+%       red_lesion_folder: folder where red lesions will be saved
+%       probability_threshold: agreement threshold used for MA and HE
+%       generation (not for red lesions, red lesions will be always
+%       generated using > 0.25).
 
     % retrieve all the images in the ma_label_folder
     ma_label_confmap_labels = getMultipleImagesFileNames(ma_label_folder);

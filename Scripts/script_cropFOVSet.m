@@ -1,4 +1,12 @@
 
+% SCRIPT_CROPFOVSET
+% -------------------------------------------------------------------------
+% This script is used to crop images around the FOV. This is useful to
+% reduce the computational time. It required to initialize 3 variables:
+%   sourcePaths: array list of paths where the data to be cropped is saved
+%   outputPaths: array list of paths where the cropped data will be saved
+%   maskPaths: path where the masks are saved.
+% -------------------------------------------------------------------------
 
 % Retrieve the mask names
 maskNames = getMultipleImagesFileNames(maskPaths);

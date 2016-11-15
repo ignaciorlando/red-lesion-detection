@@ -1,4 +1,12 @@
 
+% SCRIPT_ORGANIZE_DIARETDB1_ROCH_DATA
+% -------------------------------------------------------------------------
+% This script is used to organize DIARETDB1-ROCh data. You must modify
+% config_organize_diaretdb1_roch_data before executing this script. If
+% DIARETDB1 and ROCh were not organized before, this script is going to
+% organize them for you.
+% -------------------------------------------------------------------------
+
 config_organize_diaretdb1_roch_data
 
 %% preparing input and output folders

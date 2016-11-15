@@ -1,5 +1,9 @@
 
 function copy_roch_files(file_names, input_dir, output_dir)
+% COPY_ROCH_FILES  Copy images from input_dir to output_dir
+%       file_names: image filenames
+%       input_dir: input folder
+%       output_dir: output folder
 
     % copy all the images on the training set
     for i = 1 : length(file_names)

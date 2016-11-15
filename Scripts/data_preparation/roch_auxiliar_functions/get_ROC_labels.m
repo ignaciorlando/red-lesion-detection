@@ -1,5 +1,11 @@
 
 function [labels, filenames] = get_ROC_labels(xml_filename, input_images_folder, output_images_folder, probability)
+% GET_ROC_LABELS  Generate binary labels from a XML file
+%       xml_filename: name of the XML file with the labels (according to
+%                     ROC format)
+%       input_images_folder: folder where images are saved
+%       output_images_folder: folder where the labels will be saved
+%       probability: probability used for the threshold
 
     % parse the file
     s = xml2struct(xml_filename);

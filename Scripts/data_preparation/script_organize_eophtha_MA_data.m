@@ -1,4 +1,10 @@
 
+% SCRIPT_ORGANIZE_EOPHTHA_MA_DATA
+% -------------------------------------------------------------------------
+% This script is used to organize e-ophtha MA data. You must modify
+% config_organize_eophtha_MA_data before executing this script.
+% -------------------------------------------------------------------------
+
 config_organize_eophtha_MA_data;
 
 % prepare paths from the original data set 

@@ -1,4 +1,13 @@
 
+% GENERATEFOVMASKS
+% -------------------------------------------------------------------------
+% This script is used to generate FOV masks for a given data set. It
+% requires to initialize the following variables:
+%   root: data set root path
+%   threshold: value used to threshold the Luminosity plane of the CIELab
+%              version.
+% -------------------------------------------------------------------------
+
 % Assign the folder names
 folder = fullfile(root, 'images');
 folder_masks = fullfile(root, 'masks');

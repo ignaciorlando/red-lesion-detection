@@ -1,4 +1,10 @@
 
+% SCRIPT_ORGANIZE_ROCH_DATA
+% -------------------------------------------------------------------------
+% This script is used to organize ROCh data. You must modify
+% config_organize_roch_data before executing this script.
+% -------------------------------------------------------------------------
+
 config_organize_roch_data
 
 %% set up input and output folders

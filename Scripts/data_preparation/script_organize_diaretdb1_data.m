@@ -1,4 +1,10 @@
 
+% SCRIPT_ORGANIZE_DIARETDB1_DATA
+% -------------------------------------------------------------------------
+% This script is used to organize DIARETDB1 data. You must modify
+% config_organize_diaretdb1_data before executing this script.
+% -------------------------------------------------------------------------
+
 config_organize_diaretdb1_data;
 
 %% identify images on the training and test sets
