@@ -1,4 +1,11 @@
 
+% SCRIPT_GET_RED_LESION_DETECTION_TRAINING_SET
+% -------------------------------------------------------------------------
+% This code is used to prepare the patches that we need for training the
+% CNN from scratch. You have to modify 
+% config_get_red_lesion_detection_training_set first.
+% -------------------------------------------------------------------------
+
 config_get_red_lesion_detection_training_set;
 
 % Announce the name of the data set

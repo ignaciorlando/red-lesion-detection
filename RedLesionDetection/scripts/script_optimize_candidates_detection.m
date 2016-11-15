@@ -5,13 +5,6 @@ config_optimize_candidates_detection;
 
 % prepare root path of data sets
 root_path = fullfile(root_path, datasetName);
-% prepare dataset path
-dataset_path = fullfile(segm_path, datasetName);
-% prepare output path
-output_path = fullfile(dataset_path, 'ma_candidates');
-if (exist(output_path, 'dir') == 0)
-    mkdir(output_path);
-end
 
 % get image filenames
 img_names = getMultipleImagesFileNames(fullfile(root_path, 'images'));
@@ -19,10 +12,6 @@ img_names = getMultipleImagesFileNames(fullfile(root_path, 'images'));
 lbl_names = getMultipleImagesFileNames(fullfile(root_path, type_of_lesion));
 % get masks filenames
 mask_names = getMultipleImagesFileNames(fullfile(root_path, 'masks'));
-% get OD segmentations filenames
-od_names = getMultipleImagesFileNames(fullfile(dataset_path, 'manual-annotations', 'od-masks'));
-% get vessel segmentation nales
-segm_names = getMultipleImagesFileNames(fullfile(dataset_path, 'segmentations'));
 
 % initialize an array of per lesion sensitivities
 tp_lesions = zeros(length(scale_ranges), length(img_names));
@@ -75,7 +64,6 @@ for ii = 1 : length(Ks);
 
             % retrieve initial guesses for this scale
             [initial_guess] = getInitialGuessesOfLesions(I, fov_mask, l, K);
-            %[initial_guess] = getInitialGuessesOfLesions(I, fov_mask, od_mask, vessel_segm, l);
 
             % if there are previous candidates...
             if (exist('previous_candidates','var')~=0)            
