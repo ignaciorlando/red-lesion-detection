@@ -332,9 +332,6 @@ for i=1:n
       
     case 'classbalancingsoftmaxloss'
       res(i+1).x = vl_nnclassbalancingsoftmaxloss(res(i).x, l.class, opts.beta, opts.gamma) ;  
-
-    case 'rankingloss'
-      res(i+1).x = vl_nnrankingloss(res(i).x, l.class) ;
       
     case 'relu'
       if l.leak > 0, leak = {'leak', l.leak} ; else leak = {} ; end
@@ -445,10 +442,7 @@ if doder
         res(i).dzdx = vl_nnsoftmaxloss(res(i).x, l.class, res(i+1).dzdx) ;
 
       case 'classbalancingsoftmaxloss'
-        res(i).dzdx = vl_nnclassbalancingsoftmaxloss(res(i).x, l.class, opts.beta, opts.gamma, res(i+1).dzdx) ;        
-        
-      case 'rankingloss'
-        res(i).dzdx = vl_nnrankingloss(res(i).x, l.class, res(i+1).dzdx) ;        
+        res(i).dzdx = vl_nnclassbalancingsoftmaxloss(res(i).x, l.class, opts.beta, opts.gamma, res(i+1).dzdx) ;                
         
       case 'relu'
         if l.leak > 0, leak = {'leak', l.leak} ; else leak = {} ; end
