@@ -1,5 +1,11 @@
 
-config_segment_ma;
+% SCRIPT_SEGMENT_RED_LESIONS
+% -------------------------------------------------------------------------
+% This code is used for segmenting red lesions on new images from a given
+% folder. You have to edit config_segment_red_lesions to fix parameters.
+% -------------------------------------------------------------------------
+
+config_segment_red_lesions;
 
 % -------------------------------------------------------------------------
 % prepare folder and filenames
@@ -63,7 +69,7 @@ for i = 1 : length(img_names)
     I = imread(fullfile(images_path, img_names{i}));
     
     % Get the segmentations and the score map for the given image
-    [segmentation, score_map, current_scores] = segmentMA(detector, I, double(imdb.images.data{i}), imdb.images.candidates_pxs{i});
+    [segmentation, score_map, current_scores] = segmentRedLesions(detector, I, double(imdb.images.data{i}), imdb.images.candidates_pxs{i});
     score_maps{i} = score_map;
     
     % save the segmentation and the score map

@@ -1,13 +1,11 @@
     
-function [ma_detector, quality] = trainMaDetector(imdb, method)
+function [ma_detector, quality] = trainRedLesionDetector(imdb, method)
     
     % retrieve training/validation data from IMDB
     training_ma_features = imdb.images.data(imdb.images.set==1, :);
     training_ma_labels = imdb.images.labels(imdb.images.set==1);
     validation_ma_features = imdb.images.data(imdb.images.set==2, :);
     validation_ma_labels = imdb.images.labels(imdb.images.set==2);
-    %validation_image_ids = imdb.images.image_id(imdb.images.set==2);
-    %validation_ground_truth_num_mas = sum(imdb.images.ma_per_image);
 
     % ---------------------------------------------------------------------
     % PREPROCESS TRAINING/VALIDATION SETS
@@ -22,7 +20,7 @@ function [ma_detector, quality] = trainMaDetector(imdb, method)
     validation_ma_features = cat(2, validation_ma_features, ones(size(validation_ma_features,1),1));
 
     % ---------------------------------------------------------------------
-    % GENERATE THE MA_DETECTOR
+    % LEARN THE RED LESION DETECTOR
     % ---------------------------------------------------------------------
     
     % find the lambda value in this set
@@ -103,8 +101,6 @@ function [ma_detector, quality] = trainMaDetector(imdb, method)
         % evaluate the auc and save in the quality_values matrix
         % and in the model matrix
         [quality] =  evaluateResults(validation_ma_labels, scores, 'f1-score');
-        %[~, ~, quality] = froc(scores, validation_ma_labels, validation_image_ids, validation_ground_truth_num_mas, false);
-        %[~, ~, quality] = froc(scores, validation_ma_labels, validation_image_ids, validation_ground_truth_num_mas, false);
         
     else
                 

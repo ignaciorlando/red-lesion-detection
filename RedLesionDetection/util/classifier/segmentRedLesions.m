@@ -1,5 +1,5 @@
 
-function [ma_segmentation, ma_score_map, scores] = segmentMA(ma_detector, I, features, pxs)
+function [ma_segmentation, ma_score_map, scores] = segmentRedLesions(ma_detector, I, features, pxs)
 
     % Create an empty image
     ma_segmentation = false(size(I,1), size(I,2));
