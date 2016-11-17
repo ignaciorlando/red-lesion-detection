@@ -1,7 +1,7 @@
 
 #Red lesion detection in fundus images for diabetic retinopathy screening
 
-Created by Jose Ignacio Orlando at Pladema Institute (Facultad de Ciencias Exactas, UNCPBA, Tandil, Argentina) and CONICET (Consejo Nacional de Investigaciones Cientificas y Tecnicas, Argentina), under the supervision of [Dr. Matthew B. Blaschko](http://homes.esat.kuleuven.be/~mblaschk/) (ESAT-Visics, KU Leuven, Leuven, Belgium).
+Created by José Ignacio Orlando at Pladema Institute (Facultad de Ciencias Exactas, UNCPBA, Tandil, Argentina) and CONICET (Consejo Nacional de Investigaciones Científicas y Técnicas, Argentina), under the supervision of [Dr. Matthew B. Blaschko](http://homes.esat.kuleuven.be/~mblaschk/) (ESAT-Visics, KU Leuven, Leuven, Belgium).
 
 
 
@@ -89,7 +89,7 @@ Additionally, if you use Soares *et al.* features or Azzopardi *et al.* features
 }
 ```
 
-##Setting up the code
+##Using the code
 
 ###Requirements
 * Microsoft Windows (7, 8 or 10), OSX El Capital or macOS Sierra.
@@ -158,26 +158,28 @@ Due to the random nature of some parts of our pipeline (splits into training and
 
 #### Red lesion detection on DIARETDB1 test set (using Seoud et al., 2016 definition of red lesions)
 > 
-> **Pre-trained CNN** (X KB)
-> **Pre-trained Random Forest classifier** (X KB)
-> **DIARETDB1 training set vessel segmentations** (X KB)
-> **DIARETDB1 training set red lesion candidates** (X KB)
-> **DIARETDB1 test set vessel segmentations** (X KB)
-> **DIARETDB1 test set red lesion candidates** (X KB)
+> **Pre-trained CNN ** [Download (789 KB)](https://app.box.com/s/vkmz7ckcrrxll6sr0u9jdyemf5d3axww)
+> **Pre-trained Random Forest classifier using hand crafted features** [Download (606 KB)](https://app.box.com/s/xd95h7ftvyhypteb44uw7ocrzr6mnznj)
+> **Pre-trained Random Forest classifier using both CNN and hand crafted features** [Download (701 KB)](https://app.box.com/s/4h1j6kmvh7im6ri0fpi41kxmbdnbimtd)
+> **DIARETDB1 training set vessel segmentations** [Download (993 KB)](https://app.box.com/s/ex0pffs3lrmi9uk2ykhuepnz8mwvftqw)
+> **DIARETDB1 training set red lesion candidates** [Download (100 KB)](https://app.box.com/s/cz2jg7wbbyudq25j8zpi4unutxf38zob)
+> **DIARETDB1 test set vessel segmentations** [Download (2 MB)](https://app.box.com/s/r08z0lj1yoeu3f402hitwayayl2gio43)
+> **DIARETDB1 test set red lesion candidates** [Download (204 KB)](https://app.box.com/s/8fd9y11cnhwi6d5iapiui557hrnwiwj8)
 
 #### Small red lesion detection on e-ophtha
 
-> **Pre-trained CNN** (X KB)
-> **Pre-trained Random Forest classifier** (X KB)
-> **DIARETDB1-ROC training set vessel segmentations** (X KB)
-> **DIARETDB1-ROC training set red lesion candidates** (X KB)
-> **e-ophtha vessel segmentations** (X KB)
-> **e-ophtha red lesion candidates** (X KB)
+> **Pre-trained CNN** [Download (708 KB)](https://app.box.com/s/n8xlvk081gynak7fuyl2dlmxxdzd00xo)
+> **Pre-trained Random Forest classifier using hand crafted features** [Download (660 KB)](https://app.box.com/s/pstelijtuirubb8bmgllm09yq1aaa98e)
+> **Pre-trained Random Forest classifier using both CNN and hand crafted features** [Download (388 KB)](https://app.box.com/s/d6dn67dnqgf7xi50vh2t44oi4lb5ywmo)
+> **DIARETDB1-ROC training set vessel segmentations** [Download (2 MB)](https://app.box.com/s/mhv1jgynrhvdtobtidgplp48u7a218ol)
+> **DIARETDB1-ROC training set red lesion candidates** [Download (249 KB)](https://app.box.com/s/vz0x8mswztnz8oin22l6fq03ja304fmh)
+> **e-ophtha vessel segmentations** [Download (9.2 MB)](https://app.box.com/s/aiokhcnqqmbwqlfkr8u4tpjv207jzkoa)
+> **e-ophtha red lesion candidates** [Download (1.3 MB)](https://app.box.com/s/njer3pohrm6xz613ca6ex701g7u7pket)
 
 #### Red lesion detection on MESSIDOR using our model trained on DIARETDB1
 
-> **MESSIDOR vessel segmentations** (X KB)
-> **MESSIDOR red lesion candidates** (X KB)
+> **MESSIDOR vessel segmentations** [Download (23.3 MB)](https://app.box.com/s/hkibmy2m3kfm142dyt61fqu1p61vqoxs)
+> **MESSIDOR red lesion candidates** [Download (3.9 MB)](https://app.box.com/s/915fgkhjdr5da5q5nweaa6m69t5a8dwb)
 
 
 ### How to use our code for vessel segmentation in fundus images
@@ -195,7 +197,7 @@ OK, so let's start.
 	This script will popup an image with a rectangle around a random area of the image. You can drag that rectangle around the area where you want to zoom in, and then use double-clic to effectively zoom in there. Then, you have to draw an orthogonal line for the wider vessel. Repeat this 3 times, and for 5 images.
 * This code will output a ```downsample_value```.
 
-* Now, [download our segmentation model](SEGMENTATION) trained on DRIVE and save it on a known folder.
+* Now, [download our segmentation model (3.9 MB)](https://app.box.com/s/b1uqilgst2tyb982zfp21cidwp6tkjzh) trained on DRIVE and save it on a known folder.
 * Edit  ```config_segment_vessels``` and assign ```scale_values = downsample_value```, and your data set name.
 * Run  ```script_segment_vessels``` .
 
