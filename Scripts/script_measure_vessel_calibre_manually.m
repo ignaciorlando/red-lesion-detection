@@ -1,15 +1,24 @@
 
-config_measureVesselCalibreManually;
+% SCRIPT_MEASURE_VESSEL_CALIBRE_MANUALLY
+% -------------------------------------------------------------------------
+% This code is used for measuring vessel calibre manually. Please, edit
+% first config_measure_vessel_calibre_manually to assign the data set to
+% measure.
+% -------------------------------------------------------------------------
+
+config_measure_vessel_calibre_manually;
 
 % Retrieve the names of the images
+root = fullfile(root, dataset_name, 'images');
 imgNames = getMultipleImagesFileNames(root);
 
+% Initialize an array of calibers
 calibers = zeros(numImages, numProf);
 
 % For each of the images in the list
 for j = 1 : numImages
 
-    disp(strcat('Measuring calibers of image', num2str(j)-2));
+    disp(['Measuring calibers of image ', num2str(j)]);
 
     % Read the image
     I = imread(fullfile(root, imgNames{j}));
@@ -36,3 +45,6 @@ for j = 1 : numImages
     end
 
 end
+
+% The downsample value is
+downsample_value = 8.73 / mean(mean(calibers, 2));

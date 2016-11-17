@@ -13,7 +13,6 @@ addpath(genpath(fullfile(root,'Util','eval'))) ;
 addpath(genpath(fullfile(root,'Util','files'))) ;
 addpath(genpath(fullfile(root,'Util','images'))) ;
 addpath(genpath(fullfile(root,'Util','labels'))) ;
-addpath(genpath(fullfile(root,'Util','vesselCalibre'))) ;
 % add external libraries
 addpath(fullfile(root,'Util','external')) ;
 addpath(genpath(fullfile(root,'Util','external','hline_vline'))) ; % code for vertical line
