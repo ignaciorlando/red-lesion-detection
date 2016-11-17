@@ -40,8 +40,3 @@ if numel(dir(fullfile(root, 'matlab', 'mex', 'vl_nnconv.mex*'))) == 0
     % compile MEX files
     vl_compilenn;
 end
-
-if numel(dir(fullfile(pwd, 'SORcomplete_mex.mex*'))) == 0
-    % compile ranking loss
-    mex ./Learning/rankingloss/SORcomplete_mex.c
-end
