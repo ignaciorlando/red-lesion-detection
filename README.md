@@ -97,7 +97,7 @@ Additionally, if you use Soares *et al.* features or Azzopardi *et al.* features
 
 ###First things to do
  >* Create your own copy of this repository.
- >* Download the following external libraries and paste them in ```/Util/external/```:
+ >* The folder ```/external/``` contains third-party code, that is essential for processing. We provide such files, but in order to be updated you should download the following external libraries and paste them in ```/external/```:
   * [VLFeat (for ROC and Pr/Re curves)](http://www.vlfeat.org/install-matlab.html)
   * [Random Forest code](https://github.com/PetterS/hep-2/tree/master/randomforest-matlab/RF_Class_C)
   * [Matconvnet](https://github.com/vlfeat/matconvnet)
