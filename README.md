@@ -148,7 +148,7 @@ script_segment_red_lesions
 ```
 
 >**Remember:** 
->- You must edit ```config_segment_red_lesions``` before running this script to indicate the path where your data set is located. 
+>- You must edit ```config_segment_red_lesions``` before running this script to indicate the path where your data set is located.
 >- Ensure yourself that your data set folder is properly structured in such a way that you can find at least two folders inside: ```images```, with all your images; and ````masks```, with all your FOV masks. 
 >- If you want to use hand-crafted features also, you must have vessel segmentations for each of the images. Go to **How to use our segmentation method** for more details about how to do it.
 >- Again, you have to provide paths to where the pretrained CNN (```cnn_filename```) and your Random Forest classifier (```trained_model_name```) are located.
@@ -202,3 +202,13 @@ OK, so let's start.
 * Run  ```script_segment_vessels``` .
 
 >**Warning!** You have to have sufficient space on your hard disk. This method will copy your entire data set to a separate folder, where all images will be downsample to the proper resolution.
+
+##Download our results
+
+If you are in a rush and you don't want to run all our code but comparing your results with ours instead, you can download from here our segmentations on [DIARETDB1 test set (2.5 MB)](https://app.box.com/s/527vhsjodgevqww9rc8yujtpdf5t2g1a), [e-ophtha (22.8 MB)](https://app.box.com/s/zyj2lncvc6t4xeherhlqj731cskjxgqu) and [MESSIDOR (96.5 MB)](https://app.box.com/s/p19444z1nksahr5lmu475e52yq4odm6q). 
+
+We provide:
+
+* **Probability maps:** as .MAT files, with the same size of images but as cropped around the FOV.
+* **Binary segmentations:** obtained by thresholding the probability maps at a 50% probability. Again, their size is equivalent to the size of the image cropped around the FOV.
+* **FROC curves:** as .FIG files. Additional data to plot it is on a .MAT file. Only for DIARETDB1 and e-ophtha.

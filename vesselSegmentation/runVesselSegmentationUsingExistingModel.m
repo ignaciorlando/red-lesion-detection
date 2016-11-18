@@ -4,9 +4,9 @@ function [results] = runVesselSegmentationUsingExistingModel(config, model)
     % if there are labels in the test data
     if config.thereAreLabelsInTheTestData
         % Open training data labels
-        [testdata.labels] = openVesselLabels(fullfile(config.training_data_path, 'labels'));
+        allLabels = openVesselLabels(fullfile(config.test_data_path, 'labels'));
     else
-        testdata.labels = [];
+        allLabels = [];
     end
 
     % set image and mask paths
@@ -18,6 +18,14 @@ function [results] = runVesselSegmentationUsingExistingModel(config, model)
     % ...and mask names
     mskNames = getMultipleImagesFileNames(masksPath);
     
+    % initialize an array of quality values
+    results.qualityMeasures.se = zeros(size(imgNames));
+    results.qualityMeasures.sp = zeros(size(imgNames));
+    results.qualityMeasures.acc = zeros(size(imgNames));
+    results.qualityMeasures.precision = zeros(size(imgNames));
+    results.qualityMeasures.fMeasure = zeros(size(imgNames));
+    results.qualityMeasures.matthews = zeros(size(imgNames));
+    
     % for each image, verify if the feature file exist. if it is not there,
     % then we should compute it
     for i = 1 : length(imgNames)
@@ -27,12 +35,7 @@ function [results] = runVesselSegmentationUsingExistingModel(config, model)
         % open the mask
         mask = imread(fullfile(masksPath, mskNames{i})) > 0;
         mask = mask(:,:,1);
-        
-        % MODIFIED: ESTIMATE THE FOV SIZE AND THE SCALE FACTOR
-        original_size = size(mask);
-        new_size_factor = config.downsample_factor;
-        mask = imresize(mask, new_size_factor, 'nearest');
-        testdata.masks = {mask};
+        testdata.masks{1} = mask;
 
         % UNARY FEATURES --------------------------------------------------
         selectedFeatures = config.features.unary.unaryFeatures;
@@ -76,18 +79,37 @@ function [results] = runVesselSegmentationUsingExistingModel(config, model)
         config.features.unary.pairwiseDimensionality = size(pairwisefeatures, 2);
         % compute the pairwise kernels
         testdata.pairwiseKernels = getPairwiseFeatures(pairwisefeatures, config.features.pairwise.pairwiseDeviations);
-    
-        % Segment test data to evaluate the model -------------------------
-        [results.segmentations, results.qualityMeasures] = getBunchSegmentations2(config, testdata, model);
-        
-        % MODIFIED
-        for i_s = 1 : length(results.segmentations)
-            results.segmentations{i_s} = imresize(results.segmentations{i_s}, original_size, 'nearest');
+        % get current label
+        if ~isempty(allLabels)
+            testdata.labels{1} = allLabels{i};
         end
         
-        % Save the segmentations ------------------------------------------
-        SaveSegmentations(config.resultsPath, config, results, model, testdata.filenames);
+        % Segment test data to evaluate the model -------------------------
+        [current_results.segmentations, current_results.qualityMeasures] = getBunchSegmentations2(config, testdata, model);
         
+        % Save the segmentations ------------------------------------------
+        SaveSegmentations(config.resultsPath, config, current_results, model, testdata.filenames);
+        
+        % Save current performance
+        if ~isempty(allLabels)
+            results.qualityMeasures.se(i) = current_results.qualityMeasures.se;
+            results.qualityMeasures.sp(i) = current_results.qualityMeasures.sp;
+            results.qualityMeasures.acc(i) = current_results.qualityMeasures.acc;
+            results.qualityMeasures.precision(i) = current_results.qualityMeasures.precision;
+            results.qualityMeasures.fMeasure(i) = current_results.qualityMeasures.fMeasure;
+            results.qualityMeasures.matthews(i) = current_results.qualityMeasures.matthews;
+        end
+        
+    end
+       
+    % Take average performance
+    if ~isempty(allLabels)
+        results.averageQualityMeasures.se = mean(results.qualityMeasures.se);
+        results.averageQualityMeasures.sp = mean(results.qualityMeasures.sp);
+        results.averageQualityMeasures.acc = mean(results.qualityMeasures.acc);
+        results.averageQualityMeasures.precision = mean(results.qualityMeasures.precision);
+        results.averageQualityMeasures.fMeasure = mean(results.qualityMeasures.fMeasure);
+        results.averageQualityMeasures.matthews = mean(results.qualityMeasures.matthews);
     end
     
 end
