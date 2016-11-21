@@ -152,7 +152,7 @@ function [imdb] = get_red_lesion_data_to_classify(dataset_to_extract_data, featu
                         % open segmentation
                         segm = imread(fullfile(segmentations_path, segmentations_filenames{i}));
                         % compute features and retrieve pixels
-                        [current_features, current_candidates_coordinates] = maFeatureExtraction(ma_candidate, I, segm, mask);
+                        [current_features, current_candidates_coordinates] = hand_crafted_features_extraction(ma_candidate, I, segm, mask);
                         % get the labels
                         if ~isempty(gt)
                             [current_labels] = getMaLabels(gt, current_candidates_coordinates);

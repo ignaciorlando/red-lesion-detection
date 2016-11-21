@@ -1,11 +1,11 @@
 
-function [ma_features, candidates_pxs] = maFeatureExtraction(maCandidates, I, segm, mask)
+function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_lesion_candidates, I, segm, mask)
 
     % -------------------------------------------------------
     % PREPARE DATA
     % -------------------------------------------------------   
     % Generate logical matrices
-    maCandidates = maCandidates > 0;
+    red_lesion_candidates = red_lesion_candidates > 0;
     segm = segm > 0;
     % Transform image to double
     I = im2double(I);
@@ -13,7 +13,7 @@ function [ma_features, candidates_pxs] = maFeatureExtraction(maCandidates, I, se
         segm = imresize(segm, [size(I,1) size(I,2)], 'nearest');
     end
     % Get ma candidates
-    conn = bwconncomp(maCandidates);
+    conn = bwconncomp(red_lesion_candidates);
     
     % -------------------------------------------------------
     % PREPARE IMAGE FOR FEATURE EXTRACTION
@@ -30,7 +30,7 @@ function [ma_features, candidates_pxs] = maFeatureExtraction(maCandidates, I, se
     HSV = rgb2hsv(I);
     hue = HSV(:,:,1);
     % Get statistics from connected components
-    stats = regionprops(maCandidates, 'Area', 'Perimeter', 'MajorAxisLength', 'MinorAxisLength');
+    stats = regionprops(red_lesion_candidates, 'Area', 'Perimeter', 'MajorAxisLength', 'MinorAxisLength');
     % Generate I_bg
     I_bg = im2double(medfilt2(uint8(green*255), [25 25]));
     I_sc = green - I_bg;
