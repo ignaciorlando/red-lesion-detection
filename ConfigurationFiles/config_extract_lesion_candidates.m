@@ -10,9 +10,9 @@
 %datasetName = fullfile('DIARETDB1', 'test');
 %datasetName = fullfile('ROCh','train');
 %datasetName = fullfile('ROCh','test');
-%datasetName = fullfile('DIARETDB1-ROCh','train');
+datasetName = fullfile('DIARETDB1-ROCh','train');
 %datasetName = 'e-ophtha';
-datasetName = 'MESSIDOR';
+%datasetName = 'MESSIDOR';
 
 % Path where the data set is
 root_path = 'C:\_diabetic_retinopathy_testing_software';

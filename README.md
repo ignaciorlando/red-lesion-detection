@@ -101,7 +101,7 @@ Additionally, if you use Soares *et al.* features or Azzopardi *et al.* features
   * [VLFeat (for ROC and Pr/Re curves)](http://www.vlfeat.org/install-matlab.html)
   * [Random Forest code](https://github.com/PetterS/hep-2/tree/master/randomforest-matlab/RF_Class_C)
   * [Matconvnet](https://github.com/vlfeat/matconvnet)
->* Add ```ConfigurationFiles/ ``` to the .gitignore file. This is essential if you don't want to commit every configuration script each time you modify them.
+>* Download ```ConfigurationFiles.rar``` and decompress it on ```red-lesion-detection``` folder. This folder contains all the configuration scripts that are required for our scripts.
 
 ### How to use this code 
 
