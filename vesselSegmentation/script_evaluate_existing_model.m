@@ -29,7 +29,7 @@ warning('off','all');
 % % Root folder where the results are going to be stored
 % rootResults = 'C:\_diabetic_retinopathy\segmentations';
 % % Model location
-% modelLocation = 'C:\Users\USUARIO\Dropbox\RetinalImaging\Writing\drscreening2016paper\data\segmentation-model';
+% modelLocation = 'C:\_diabetic_retinopathy\segmentation-model';
 
 thereAreLabelsInTheTestData = 0 * zeros(size(datasets_names));
 

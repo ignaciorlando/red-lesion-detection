@@ -27,10 +27,12 @@ for d = 1 : length(dataset_names)
     
     % copy all images to a new folder
     if exist(fullfile(current_image_data_folder, '_aux'), 'dir')==0
-        fprintf('Copy all images\n');
         standardized_size_dataset_folder = fullfile(current_image_data_folder, '_aux');
         mkdir(standardized_size_dataset_folder);
-        copyfile(current_image_data_folder, standardized_size_dataset_folder, 'f');
+        fprintf('Copying all images\n');
+        copyfile(fullfile(current_image_data_folder, 'images'), fullfile(standardized_size_dataset_folder, 'images'), 'f');
+        fprintf('Copying all masks\n');
+        copyfile(fullfile(current_image_data_folder, 'masks'), fullfile(standardized_size_dataset_folder, 'masks'), 'f');
     
         % retrieve minimum image size
         fprintf('Retrieving smallest image size\n');
