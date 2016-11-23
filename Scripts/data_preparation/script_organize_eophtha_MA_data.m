@@ -8,9 +8,9 @@
 config_organize_eophtha_MA_data;
 
 % prepare paths from the original data set 
-ma_labels_root = fullfile(root_path, 'e_optha_MA', 'Annotation_MA');
-healthy_set_root = fullfile(root_path, 'e_optha_MA', 'healthy');
-ma_set_root = fullfile(root_path, 'e_optha_MA', 'MA');
+ma_labels_root = fullfile(root_path, 'e_ophtha_MA', 'Annotation_MA');
+healthy_set_root = fullfile(root_path, 'e_ophtha_MA', 'healthy');
+ma_set_root = fullfile(root_path, 'e_ophtha_MA', 'MA');
 
 % prepare paths for the outputs
 ma_labels_output = fullfile(output_folder, 'labels');
