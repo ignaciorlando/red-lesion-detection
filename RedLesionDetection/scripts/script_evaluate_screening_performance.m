@@ -5,11 +5,14 @@ config_evaluate_screening_performance;
 % prepare folder and filenames
 % -------------------------------------------------------------------------
 
+% update folder where the scores are saved
+root_scores_folder = fullfile(root_scores_folder, dataset_name, strcat(type_of_lesion, '-segmentations'));
+
 % generate data set tag
 [dataset_tag_name] = generate_dataset_tag(dataset_name);
 
 % prepare the scores folder
-scores_folder = fullfile(root_scores_folder, dataset_tag_name, features_source, trained_model_name);
+scores_folder = fullfile(root_scores_folder, features_source, trained_model_name);
 if strcmp(features_source, 'combined')
     scores_folder = fullfile(scores_folder, cnn_filename);
 end
@@ -63,7 +66,7 @@ auc = info.auc;
 
 % plot it
 figure;
-plot(1-tpr, tnr, 'LineWidth', 2);
+plot(1-tnr, tpr, 'LineWidth', 2);
 box on
 grid on
 legend(['AUC = ', num2str(auc)], 'Location', 'southeast');
@@ -71,5 +74,5 @@ xlabel('1 - Per-image specificity');
 ylabel('Per-image sensitivity');
 
 % save everything we did
-save(fullfile(output_path, strcat(type_of_evaluation,'-performance.mat')), 'dr_probability', 'labels', 'auc');
+save(fullfile(output_path, strcat(type_of_evaluation,'-performance.mat')), 'dr_probability', 'labels', 'auc', 'tpr', 'tnr');
 savefig(fullfile(output_path, strcat(type_of_evaluation,'-roc-curve.fig')));

@@ -11,6 +11,9 @@ config_segment_red_lesions;
 % prepare folder and filenames
 % -------------------------------------------------------------------------
 
+% reassign results path
+results_path = fullfile(results_path, dataset_name, strcat(type_of_lesion, '-segmentations'));
+
 % replace bars in the name of the training and test sets
 [training_set] = generate_dataset_tag(training_set);
 [dataset_tag_name] = generate_dataset_tag(dataset_name);
@@ -29,7 +32,7 @@ switch features_source
     otherwise
         cnn_fullpath = trained_model_file;
 end
-output_path = fullfile(results_path, strcat(type_of_lesion, '_segmentations'), dataset_tag_name, features_source, trained_model_name);
+output_path = fullfile(results_path, features_source, trained_model_name);
 if strcmp(features_source, 'combined')
     output_path = fullfile(output_path, cnn_filename);
 end
