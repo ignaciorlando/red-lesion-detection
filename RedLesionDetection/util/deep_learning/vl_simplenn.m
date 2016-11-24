@@ -233,8 +233,12 @@ opts.skipForward = false;
 opts = vl_argparse(opts, varargin);
 
 % retrieve beta and gamma parameters
-opts.beta = net.meta.beta;
-opts.gamma = net.meta.gamma;
+if (isfield(net.meta, 'beta'))
+    opts.beta = net.meta.beta;
+end
+if (isfield(net.meta, 'gamma'))
+    opts.gamma = net.meta.gamma;
+end
 
 n = numel(net.layers) ;
 assert(opts.backPropDepth > 0, 'Invalid `backPropDepth` value (!>0)');
