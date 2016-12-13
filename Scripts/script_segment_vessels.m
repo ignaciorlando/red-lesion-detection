@@ -15,7 +15,7 @@ for d = 1 : length(dataset_names)
     
     % get current data set name and scale factor
     current_dataset = dataset_names{d};
-    current_scale_factor = scale_values(d);
+    %current_scale_factor = scale_values(d);
     
     % analyzing data set
     fprintf('Processing data set %s\n', current_dataset);
@@ -47,9 +47,17 @@ for d = 1 : length(dataset_names)
 
     end
     
+    % now the data set is in:
+    dataset_path = fullfile(current_dataset, '_aux');
+    
+    % Measure vessel calibre
+    [calibers] = measure_vessel_calibre(dataset_path, 5, 3);
+    % Take the average and estimate scale factor
+    current_scale_factor = vessel_of_interest / mean(calibers, 2);
+    
     % Segment!!
     fprintf('Segmenting images\n');
-    datasets_names = {fullfile(current_dataset, '_aux')};   
+    datasets_names = {dataset_path};   
     scale_to_downsample = current_scale_factor;
     rootDatasets = image_folder;
     rootResults = fullfile(output_segmentations_folder, dataset_names{d}, 'segmentations');
