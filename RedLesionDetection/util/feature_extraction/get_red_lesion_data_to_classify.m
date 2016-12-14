@@ -55,10 +55,10 @@ function [imdb] = get_red_lesion_data_to_classify(dataset_to_extract_data, featu
         if (exist(cnn_features_filename, 'file')==0)
             fprintf('CNN features file does not exist, so we have to compute the features. This might take a while\n');
             [imdb_cnn] = get_red_lesion_data_to_classify(dataset_to_extract_data, 'cnn-transfer', type_of_lesion, is_training, data_path, root_path, cnn_filename);
-        else
-            S.imdb_cnn = load(cnn_features_filename);
-            imdb_cnn = S.imdb_cnn;
         end
+        S.imdb_cnn = load(cnn_features_filename);
+        imdb_cnn = S.imdb_cnn;
+        
         % same for the hand crafted features
         if (exist(hand_crafted_features_filename, 'file')==0)
             fprintf('Hand crafted features file does not exist, so we have to compute the features. This might take a while\n');
