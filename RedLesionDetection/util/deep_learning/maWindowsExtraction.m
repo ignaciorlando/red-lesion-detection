@@ -11,6 +11,7 @@ function [ma_windows, candidate_coordinates] = maWindowsExtraction(ma_candidates
     % -------------------------------------------------------   
     % Generate logical matrices
     ma_candidates = ma_candidates > 0;
+    mask = mask > 0;
     % Preprocess the image
     [I] = contrastEqualization(I, mask);
     % Padd the image with zeros to recover MA candidates windows
