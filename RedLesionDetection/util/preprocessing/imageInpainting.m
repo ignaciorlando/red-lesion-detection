@@ -30,5 +30,6 @@ function [outputImage] = imageInpainting(I_in, segm)
     for i = 1 : size(I,3)
         outputImage(:,:,i) = regionfill(I(:,:,i), segm);
     end
+    %outputImage = imresize(outputImage, size(I_in));
 
 end
