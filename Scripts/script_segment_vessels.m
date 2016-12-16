@@ -47,20 +47,16 @@ for d = 1 : length(dataset_names)
 
     end
     
-    % now the data set is in:
-    dataset_path = fullfile(current_dataset, '_aux');
-    
     % Measure vessel calibre
-    [calibers] = measure_vessel_calibre(dataset_path, 5, 3);
+    [calibers] = measure_vessel_calibre(fullfile(image_folder, current_dataset, '_aux'), 5, 3);
     % Take the average and estimate scale factor
-    current_scale_factor = vessel_of_interest / mean(calibers, 2);
+    scale_to_downsample = vessel_of_interest / mean(mean(calibers,2));
     
     % Segment!!
     fprintf('Segmenting images\n');
-    datasets_names = {dataset_path};   
-    scale_to_downsample = current_scale_factor;
+    datasets_names = {fullfile(current_dataset, '_aux')};   
     rootDatasets = image_folder;
-    rootResults = fullfile(output_segmentations_folder, dataset_names{d}, 'segmentations');
+    resultsPath = fullfile(output_segmentations_folder, dataset_names{d}, 'segmentations');
     script_evaluate_existing_model;
     
     % Copy results to a new folder
