@@ -63,7 +63,6 @@ for d = 1 : length(dataset_names)
     copyfile(config.resultsPath, fullfile(output_segmentations_folder, current_dataset, 'segmentations'), 'f');
     
     % Delete all auxiliar folder
-    try rmdir(config.resultsPath,'s'); catch end
-    try rmdir(config.test_data_path,'s'); catch end
+    try rmdir(fullfile(image_folder, current_dataset, '_aux'),'s'); catch end
     
 end
