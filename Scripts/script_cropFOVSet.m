@@ -31,7 +31,7 @@ for d = 1 : length(sourcePaths)
         % Open mask
         mask = imread(fullfile(maskPaths, maskNames{i})) > 0;
         % Crop the image
-        [ I, ~ ] = cropFOV( I, mask );
+        [ I, mask ] = cropFOV( I, mask );
         % If the image is binary, write a logical
         if (length(unique(I(:)))==2)
             I = I > 0;
@@ -43,16 +43,8 @@ for d = 1 : length(sourcePaths)
             extension = '.png';
         end
         imwrite( uint8(I), fullfile(outputPath, filesep, strcat(current_image_name, extension)), 'jpg');
+        % Save the mask
+        imwrite( mask>0, fullfile(maskPaths, maskNames{i}));
     end
     
-end
-
-% Save the masks
-for i = 1 : length(maskNames)
-    % Open mask
-    mask = imread(fullfile(maskPaths, maskNames{i})) > 0;
-    % Save the mask cropped
-    [ mask, ~ ] = cropFOV( mask, mask );
-    % Save the mask
-    imwrite( mask>0, fullfile(maskPaths, maskNames{i}));
 end
