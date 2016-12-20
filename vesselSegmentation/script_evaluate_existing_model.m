@@ -29,7 +29,9 @@ for i = 1 : length(datasets_names)
               
     % Set the test path
     config.test_data_path = fullfile(rootDatasets, datasets_names{i});
-    config.features.saveFeatures = 1;
+    if isfield(config.features, 'saveFeatures')==0
+        config.features.saveFeatures = 1;
+    end
     
     % Set the results path
     config.resultsPath = resultsPath;
