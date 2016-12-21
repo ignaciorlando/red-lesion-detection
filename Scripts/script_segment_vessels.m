@@ -57,6 +57,7 @@ for d = 1 : length(dataset_names)
     datasets_names = {fullfile(current_dataset, '_aux')};   
     rootDatasets = image_folder;
     resultsPath = fullfile(output_segmentations_folder, dataset_names{d}, 'segmentations');
+    mkdir(resultsPath);
     script_evaluate_existing_model;
     
     % Copy results to a new folder

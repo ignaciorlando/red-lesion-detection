@@ -34,7 +34,9 @@ function [min_x, image_names_per_size] = getMinimumImageSize(images_path)
         end
 
     end
-    
+
+    % remove all sizes smaller than 500
+    sizes_scalar(sizes_scalar < 500) = [];
     % return the minimum size
     [min_x] = min(sizes_scalar);
 
