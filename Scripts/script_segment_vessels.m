@@ -61,7 +61,7 @@ for d = 1 : length(dataset_names)
     script_evaluate_existing_model;
     
     % Copy results to a new folder
-    copyfile(config.resultsPath, fullfile(output_segmentations_folder, current_dataset, 'segmentations'), 'f');
+    %copyfile(config.resultsPath, fullfile(output_segmentations_folder, current_dataset, 'segmentations'), 'f');
     
     % Delete all auxiliar folder
     try rmdir(fullfile(image_folder, current_dataset, '_aux'),'s'); catch end
