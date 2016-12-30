@@ -41,7 +41,6 @@ function [ma_windows, candidate_coordinates] = maWindowsExtraction(ma_candidates
                       center(1) - window_size/2 : center(1) + window_size/2 - 1) = 1;
         % add the pixel coordinates to the cell array
         candidate_coordinates{i} = conn.PixelIdxList{i};
-
         
     end
     

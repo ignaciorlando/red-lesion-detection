@@ -55,10 +55,10 @@ function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_le
     
     % Initialize feature vector
     ma_features = zeros(conn.NumObjects, 62);
-    %maFeatures = zeros(conn.NumObjects, 77);
     
     % begin feature extraction per each candidate
     for i = 1 : conn.NumObjects
+        
         % retrieve pixels
         px = conn.PixelIdxList{i};
         % pixel mask
@@ -196,14 +196,6 @@ function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_le
             ma_features(i, index) = std(I_gaussian(px));  index = index+1;
         end
         
-%         % Accumulate the top hat features per scale
-%         for s = 1 : length(lengths)
-%             tophat = I_tophat(:,:,s);
-%             maFeatures(i, index) = mean(tophat(px)); index = index + 1;
-%             maFeatures(i, index) = sum(tophat(px)); index = index + 1;
-%             maFeatures(i, index) = std(tophat(px)); index = index + 1;
-%         end
-        
         % -----------------------------------------------------------------
         % SHAPE STATISTICS
         % -----------------------------------------------------------------
@@ -243,6 +235,5 @@ function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_le
     end
     
     candidates_pxs = conn.PixelIdxList';
-
 
 end
