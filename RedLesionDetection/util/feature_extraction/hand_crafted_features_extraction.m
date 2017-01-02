@@ -9,7 +9,7 @@ function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_le
     segm = segm > 0;
     % Transform image to double
     I = im2double(I);
-    if (size(I,1) > size(segm,1))
+    if (size(I,1) ~= size(segm,1))
         segm = imresize(segm, [size(I,1) size(I,2)], 'nearest');
     end
     % Get ma candidates
