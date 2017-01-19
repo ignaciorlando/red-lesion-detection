@@ -33,7 +33,7 @@ function [red_lesion_segmentation, score_map] = full_red_lesion_segmentation(I, 
     % downscale factor
     if downscale_factor ~= 1
         red_lesion_segmentation = imresize(red_lesion_segmentation>0, size(I(:,:,1)), 'nearest');
-        score_map = imresize(score_map>0, size(I(:,:,1)), 'nearest');
+        score_map = imresize(score_map, size(I(:,:,1)), 'nearest');
     end
 
 end
