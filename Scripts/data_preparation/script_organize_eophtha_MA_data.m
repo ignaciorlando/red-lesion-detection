@@ -52,11 +52,17 @@ for i = 1 : length(healthy_dir_names)
     
 end
 
-% now, copy all the other images and their labels
+%% now, copy all the other images and their labels
+
 % images
 ma_set_names = getMultipleImagesFileNames(ma_set_root);
 % labels
 ma_labels_names = getMultipleImagesFileNames(ma_labels_root);
+
+% initialize the list of all the sick images
+all_sick_images = {};
+number_of_mas = [];
+
 counting_sick_images = 0;
 for i = 1 : length(ma_set_names)
     % fetch the folder
@@ -65,10 +71,14 @@ for i = 1 : length(ma_set_names)
     % get inner images and labels
     sick_images_names = getMultipleImagesFileNames(current_folder);
     sick_label_names = getMultipleImagesFileNames(current_folder_label);
+    % initialize the list of MAs
+    current_number_of_mas = zeros(size(sick_images_names));
     % copy each image to the new folder
     for j = 1 : length(sick_images_names);
         counting_sick_images = counting_sick_images + 1;
         fprintf('Processing sick image %d\n', counting_sick_images);
+        
+        % copy the image
         % retrieve the first part of the name
         [~, current_image_name, ext] = fileparts(sick_images_names{j}) ;
         if (strcmpi(ext, '.jpg') || strcmpi(ext, '.jpeg'))
@@ -76,14 +86,56 @@ for i = 1 : length(ma_set_names)
         end
         % copy the file
         copyfile(fullfile(current_folder, sick_images_names{j}), fullfile(images_output, strcat(current_image_name, ext)), 'f');
+        
+        % copy the labels
         % retrieve the first part of the name
         [~, current_label_name, ext] = fileparts(sick_label_names{j}) ;
         if (strcmpi(ext, '.jpg') || strcmpi(ext, '.jpeg'))
             ext = '.png';
         end
         copyfile(fullfile(current_folder_label, sick_label_names{j}), fullfile(ma_labels_output, strcat(current_label_name, ext)), 'f');
+        
+        % add images to the list
+        all_sick_images = cat(2, all_sick_images, strcat(current_label_name, ext));
+        
+        % open the labels
+        my_ma_binary_mask = imread(fullfile(current_folder_label, sick_label_names{j}));
+        % get the number of MAs
+        conn_comp = bwconncomp(my_ma_binary_mask);
+        current_number_of_mas(j) = conn_comp.NumObjects;
     end
+    number_of_mas = cat(2, number_of_mas, current_number_of_mas);
 end
+
+%% and also generate labels
+
+% retrieve image filenames
+new_images_filenames = getMultipleImagesFileNames(images_output);
+% initialize the array of labels
+labels = zeros(size(new_images_filenames))';
+
+% for each image
+for i = 1 : length(new_images_filenames)
+    
+    % check if it is an image with MAs
+    idx = find(not(cellfun('isempty', strfind(all_sick_images, new_images_filenames{i}))));
+    if ~isempty(idx)
+        
+        % Assign labels following the same criterion than MESSIDOR
+        if (number_of_mas(idx) <= 5)
+            labels(i) = 1;
+        elseif (number_of_mas(idx) <= 15)
+            labels(i) = 2;
+        else
+            labels(i) = 3;
+        end
+        
+    end
+    
+end
+save(fullfile(ma_labels_output, 'labels.mat'), 'labels');
+
+%%
 
 % now, generate fov masks
 root = output_folder;
