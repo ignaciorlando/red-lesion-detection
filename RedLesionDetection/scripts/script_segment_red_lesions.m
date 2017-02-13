@@ -29,6 +29,8 @@ switch features_source
         cnn_fullpath = [];
     case 'combined'
         cnn_fullpath = fullfile(trained_model_path, training_set, strcat(cnn_filename, '.mat'));
+    case 'cnn-transfer'
+        cnn_fullpath = fullfile(trained_model_path, training_set, strcat(cnn_filename, '.mat'));
     otherwise
         cnn_fullpath = trained_model_file;
 end
@@ -88,7 +90,7 @@ for i = 1 : length(img_names)
 end
 
 % if there are labels, plot the FROC curve
-if (~isempty(gt_labels))
+if (~isempty(gt_labels)) && generate_froc_curve
     
     if (ishandle(1))
         hold on;

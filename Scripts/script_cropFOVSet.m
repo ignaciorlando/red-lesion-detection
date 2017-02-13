@@ -42,9 +42,11 @@ for d = 1 : length(sourcePaths)
         if (strcmp(extension,'.jpg') || strcmp(extension,'.jpeg'))
             extension = '.png';
         end
-        imwrite( uint8(I), fullfile(outputPath, filesep, strcat(current_image_name, extension)), 'jpg');
-        % Save the mask
-        imwrite( mask>0, fullfile(maskPaths, maskNames{i}));
+        if length(unique(I(:)))==2
+            imwrite( I>0, fullfile(outputPath, filesep, strcat(current_image_name, extension)), 'jpg');
+        else
+            imwrite( uint8(I), fullfile(outputPath, filesep, strcat(current_image_name, extension)), 'jpg');
+        end
     end
     
 end

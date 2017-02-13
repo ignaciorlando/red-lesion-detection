@@ -13,7 +13,7 @@ healthy_set_root = fullfile(root_path, 'e_ophtha_MA', 'healthy');
 ma_set_root = fullfile(root_path, 'e_ophtha_MA', 'MA');
 
 % prepare paths for the outputs
-ma_labels_output = fullfile(output_folder, 'labels');
+ma_labels_output = fullfile(output_folder, 'red-lesions');
 images_output = fullfile(output_folder, 'images');
 mkdir(ma_labels_output);
 mkdir(images_output);
@@ -112,7 +112,7 @@ end
 % retrieve image filenames
 new_images_filenames = getMultipleImagesFileNames(images_output);
 % initialize the array of labels
-labels = zeros(size(new_images_filenames))';
+labels.dr = zeros(size(new_images_filenames))';
 
 % for each image
 for i = 1 : length(new_images_filenames)
@@ -123,17 +123,18 @@ for i = 1 : length(new_images_filenames)
         
         % Assign labels following the same criterion than MESSIDOR
         if (number_of_mas(idx) <= 5)
-            labels(i) = 1;
+            labels.dr(i) = 1;
         elseif (number_of_mas(idx) <= 15)
-            labels(i) = 2;
+            labels.dr(i) = 2;
         else
-            labels(i) = 3;
+            labels.dr(i) = 3;
         end
         
     end
     
-end
-save(fullfile(ma_labels_output, 'labels.mat'), 'labels');
+end 
+mkdir(fullfile(output_folder, 'labels'));
+save(fullfile(output_folder, 'labels', 'labels.mat'), 'labels');
 
 %%
 
@@ -141,3 +142,29 @@ save(fullfile(ma_labels_output, 'labels.mat'), 'labels');
 root = output_folder;
 threshold = 0.15;
 GenerateFOVMasks;
+
+
+%% crop every mask
+
+if perform_cropping
+
+    % cropping training data set
+    fprintf('Cropping data set...\n');
+    % - path where the images to crop are
+    sourcePaths = { ...
+        fullfile(output_folder, 'images'), ...
+        fullfile(output_folder, 'red-lesions'), ...
+        fullfile(output_folder, 'masks') ...
+    };
+    % - paths where the images to be cropped will be saved
+    outputPaths = { ...
+        fullfile(output_folder, 'images'), ...
+        fullfile(output_folder, 'red-lesions'), ...
+        fullfile(output_folder, 'masks') ...
+    };
+    % - masks to be used to crop the images
+    maskPaths = fullfile(output_folder, 'masks');
+    % crop!!
+    script_cropFOVSet;
+    
+end
