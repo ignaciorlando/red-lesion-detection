@@ -20,6 +20,7 @@ end
 % retrieve all the names of the .mat files with the scores
 main_folder_dir = dir(fullfile(scores_folder, '*.mat'));
 score_filenames = extractfield(main_folder_dir, 'name');
+score_filenames(strcmp(score_filenames,'froc_data.mat')) = [];
 
 % retrieve also the labels
 load(labels_file);
