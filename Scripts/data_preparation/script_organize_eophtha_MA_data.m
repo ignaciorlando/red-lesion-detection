@@ -31,17 +31,18 @@ for i = 1 : length(healthy_dir_names)
     for j = 1 : length(image_names)
         counting_healthy_images = counting_healthy_images + 1;
         fprintf('Processing healthy image %d\n', counting_healthy_images);
+        
+        % read the image
+        I = imread(fullfile(current_folder, image_names{j}));
         % retrieve the first part of the name
         [~, current_image_name, ext] = fileparts(image_names{j}) ;
         if (strcmpi(ext, '.jpg') || strcmpi(ext, '.jpeg'))
             ext = '.png';
         end
-        % copy the file, changing the extension to PNG if the image in in
-        % JPG format
-        copyfile(fullfile(current_folder, image_names{j}), fullfile(images_output, strcat(current_image_name, ext)));
+        % save the image
+        imwrite(I, fullfile(images_output, strcat(current_image_name, ext)));
+        
         try
-           % open the image
-            I = imread(fullfile(current_folder, image_names{j}));
             % create an empty mask
             label = false(size(I,1), size(I,2));
             % save the image
@@ -78,14 +79,15 @@ for i = 1 : length(ma_set_names)
         counting_sick_images = counting_sick_images + 1;
         fprintf('Processing sick image %d\n', counting_sick_images);
         
-        % copy the image
+        % read the image
+        I = imread(fullfile(current_folder, sick_images_names{j}));
         % retrieve the first part of the name
         [~, current_image_name, ext] = fileparts(sick_images_names{j}) ;
         if (strcmpi(ext, '.jpg') || strcmpi(ext, '.jpeg'))
             ext = '.png';
         end
-        % copy the file
-        copyfile(fullfile(current_folder, sick_images_names{j}), fullfile(images_output, strcat(current_image_name, ext)), 'f');
+        % save the image
+        imwrite(I, fullfile(images_output, strcat(current_image_name, ext)));
         
         % copy the labels
         % retrieve the first part of the name

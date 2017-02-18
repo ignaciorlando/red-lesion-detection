@@ -15,7 +15,7 @@ function [imdb] = get_red_lesion_data_to_classify(dataset_to_extract_data, featu
         case 'cnn-transfer'
             % load the cnn
             load(cnn_filename);
-            if strcmp(detector.training_type, 'from-scratch')
+            if strcmp(detector.training_type, 'cnn-from-scratch') || strcmp(detector.training_type, 'from-scratch')
                 [detector.net] = prepareCNNforExtractingFeatures(detector.net);
             end            
             % prepare red lesion data filename
@@ -29,7 +29,7 @@ function [imdb] = get_red_lesion_data_to_classify(dataset_to_extract_data, featu
         case 'combined'
             % load the cnn
             load(cnn_filename);
-            if strcmp(detector.training_type, 'from-scratch')
+            if strcmp(detector.training_type, 'cnn-from-scratch') || strcmp(detector.training_type, 'from-scratch')
                 [detector.net] = prepareCNNforExtractingFeatures(detector.net);
             end
             % prepare folder and filenames
@@ -146,7 +146,11 @@ function [imdb] = get_red_lesion_data_to_classify(dataset_to_extract_data, featu
                         % remove training data mean to all the images
                         current_windows = bsxfun(@minus, single(current_windows), detector.net.meta.trainOpts.dataMean);
                         % retrieve features
+                        try
                         res = vl_simplenn(detector.net, current_windows) ;
+                        catch
+                            disp('A');
+                        end
                         current_features = squeeze(gather(res(end).x))';
                     case 'hand-crafted'
                         % open segmentation
