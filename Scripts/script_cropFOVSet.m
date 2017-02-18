@@ -43,9 +43,9 @@ for d = 1 : length(sourcePaths)
             extension = '.png';
         end
         if length(unique(I(:)))==2
-            imwrite( I>0, fullfile(outputPath, filesep, strcat(current_image_name, extension)), 'jpg');
+            imwrite( I>0, fullfile(outputPath, filesep, strcat(current_image_name, extension)));
         else
-            imwrite( uint8(I), fullfile(outputPath, filesep, strcat(current_image_name, extension)), 'jpg');
+            imwrite( uint8(I), fullfile(outputPath, filesep, strcat(current_image_name, extension)));
         end
     end
     
