@@ -1,8 +1,16 @@
 
 root = pwd ;
 
+% copy all default configuration files to configuration
+if exist('configuration', 'file')==0
+    % Create folder
+    mkdir('configuration');
+    % Copy default configuration files
+    copyfile('default_configuration', 'configuration');
+end
+
 % add to path all folder and libraries
-addpath(genpath(fullfile(root,'ConfigurationFiles'))) ;
+addpath(genpath(fullfile(root,'configuration'))) ;
 addpath(genpath(fullfile(root,'RedLesionDetection'))) ;
 addpath(genpath(fullfile(root,'Learning'))) ;
 addpath(genpath(fullfile(root,'Scripts'))) ;

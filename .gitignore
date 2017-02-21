@@ -2,3 +2,6 @@
 *.asv
 *.DS_Store
 ConfigurationFiles/
+data/
+configuration/
+*.m~
