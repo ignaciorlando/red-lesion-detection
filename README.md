@@ -4,29 +4,20 @@
 Created by José Ignacio Orlando at Pladema Institute (Facultad de Ciencias Exactas, UNCPBA, Tandil, Argentina) and CONICET (Consejo Nacional de Investigaciones Científicas y Técnicas, Argentina), under the supervision of [Dr. Matthew B. Blaschko](http://homes.esat.kuleuven.be/~mblaschk/) (ESAT-Visics, KU Leuven, Leuven, Belgium).
 
 
-
 ##Introduction
-This code implements our red lesion detector as described in *Orlando, J. I., Prokofyeva, E., del Fresno, M. and Blaschko, M. B.: Augmenting CNNs with Domain Knowledge for Diabetic Retinopathy Screening, IMPI 2017.* It includes: 
-1. A new version of our blood vessel segmentation based on fully connected CRFs learned with SOSVMs.
+This code implements a red lesion detection method based on a combination of hand-crafted features and CNN based descriptors. Our paper is under revision now, so please do not use this repository until we release the paper.
+
+The repository includes:
+1. A new version of our blood vessel segmentation method based on fully connected CRFs learned with SOSVMs. [[paper]](https://lirias.kuleuven.be/bitstream/123456789/531621/3/OrlandoTBME2016.pdf) [[original implementation]](https://github.com/ignaciorlando/fundus-vessel-segmentation-tbme)
 2. A red lesion detection method based on using CNN's and hand crafted features in combination with random forest.
-3. Code for preparing data from DIARETDB1, ROC, e-ophtha and MESSIDOR for our experiments.
+3. Code for preparing data from [DIARETDB1](http://www.it.lut.fi/project/imageret/diaretdb1/), [ROC](http://webeye.ophth.uiowa.edu/ROC/), [e-ophtha](http://www.adcis.net/en/Download-Third-Party/E-Ophtha.html) and [MESSIDOR](http://www.adcis.net/en/Download-Third-Party/Messidor.html) for our experiments.
 4. FROC curve computation.
 
 ##License
 Our code is released under the MIT Licence (refer to the LICENSE file for details).
 
 ##Citing
-If you find our code useful for your research, please cite:
-
-```bibtex
-@incollection{orlando2017augmenting,
-  title={Augmenting CNNs with Domain Knowledge for Diabetic Retinopathy Screening},
-  author={Orlando, Jos{\'e} Ignacio and Prokofyeva, Elena and del Fresno, Mariana and Blaschko, Matthew},
-  booktitle={Information Processing in Medical Imaging--IPMI 2017},
-  year={2017},
-  publisher={Springer}
-}
-```
+Our paper is still under review. Please do not use this repository in your research until we release a valid citation to include.
 
 If you use our segmentation method, please cite the following papers:
 
@@ -89,23 +80,70 @@ Additionally, if you use Soares *et al.* features or Azzopardi *et al.* features
 }
 ```
 
+## Download precomputed data and other resources
+
+Due to the random nature of some parts of our pipeline (splits into training and validation, dropouts in the CNN, etc.) it might happen that final results are not exactly the same than the one we report. However, you can download our pretrained models from here. In that case, results should be the same.
+
+#### Red lesion detection on DIARETDB1 test set (using Seoud et al., 2016 definition of red lesions)
+> **Pre-trained models**
+> *CNN (from DIARETDB1 training set using cross-entropy loss)* [Download](https://www.dropbox.com/s/9jws6lfevxrj0yf/cnn-from-scratch-diaretdb1-train.rar?dl=0)
+> *Random Forest classifier using hand crafted features* [Download](https://www.dropbox.com/s/dv4lurrgz8yii42/hand-crafted-diaretdb1-train.rar?dl=0)
+> *Random Forest classifier using both CNN and hand crafted features* [Download](https://www.dropbox.com/s/2jemrwigh2n1csn/combined-diaretdb1-train.rar?dl=0)
+> **Pre-computed data**
+> DIARETDB1 training set
+> *Vessel segmentations* [Download](https://www.dropbox.com/s/2uowcj9b0y3lrel/diaretdb1-train-segmentations.rar?dl=0)
+> *Red lesion candidates* [Download](https://www.dropbox.com/s/vvsm74srntxhi8e/diaretdb1-train-red-lesions_candidates.rar?dl=0)
+> DIARETDB1 test set
+> *Vessel segmentations* [Download](https://www.dropbox.com/s/r3qwi9jnu11g345/diaretdb1-test-segmentations.rar?dl=0)
+> *Red lesion candidates* [Download](https://www.dropbox.com/s/511r55ii5vcztxa/diaretdb1-test-red-lesions_candidates.rar?dl=0)
+
+#### Small red lesion detection on e-ophtha
+
+> **Pre-trained models**
+> *CNN (from DIARETDB1 and ROC training sets, both combined, using class-balanced cross entropy loss due to inbalance in class distribution)* [Download](https://www.dropbox.com/s/y99ol2ok7ri5zol/cnn-from-scratch-diaretdb1-roc-train.rar?dl=0)
+> *Random Forest classifier using hand crafted features* [Download](https://www.dropbox.com/s/srwv36t9yq9drq7/hand-crafted-diaretdb1-roc-train.rar?dl=0)
+> *Random Forest classifier using both CNN and hand crafted features* [Download](https://www.dropbox.com/s/ccwyzibyh14nndo/diaretdb1-roc-train-segmentations.rar?dl=0)
+> **Pre-computed data**
+> DIARETDB1-ROC training set
+> *Vessel segmentations* [Download](https://www.dropbox.com/s/ccwyzibyh14nndo/diaretdb1-roc-train-segmentations.rar?dl=0)
+> *Red lesion candidates* [Download](https://www.dropbox.com/s/k5l5snukq12d6ij/diaretdb1-roc-train-red-lesions_candidates.rar?dl=0)
+> e-ophtha
+> *Vessel segmentations* [Download](https://www.dropbox.com/s/4eg32npqdyf8wz7/e-ophtha-segmentations.rar?dl=0)
+> *Red lesion candidates* [Download](https://www.dropbox.com/s/gvlvd72n4vngpvf/e-ophtha-red-lesions_candidates.rar?dl=0)
+
+#### Red lesion detection on MESSIDOR using our model trained on DIARETDB1
+
+> **Pre-computed data from MESSIDOR**
+> *Vessel segmentations* [Download](https://www.dropbox.com/s/8dca0sgu91vtix5/messidor-segmentations.rar?dl=0)
+> *Red lesion candidates* [Download](https://www.dropbox.com/s/23a8umf7w4z8teb/messidor-red-lesions_candidates.rar?dl=0)
+
+
+##Download our results
+
+If you are in a rush and you don't want to run all our code but comparing your results with ours instead, you can download from here our segmentations on [DIARETDB1 test set](https://www.dropbox.com/s/p8m72cull37x9u8/DIARETDB1_test.rar?dl=0), [e-ophtha](https://www.dropbox.com/s/r0k67g1djg6f2fo/e-ophtha.rar?dl=0) and [MESSIDOR](https://www.dropbox.com/s/7ck7eh3ke6987p0/MESSIDOR.rar?dl=0).
+
+We provide:
+
+* **Probability maps:** as .MAT files, with the same size of images but cropped around the FOV.
+* **Binary segmentations:** obtained by thresholding the probability maps at a 50% probability. Again, their size is equivalent to the size of the image cropped around the FOV.
+* **FROC curves:** as .FIG files. Additional data to plot it is on a .MAT file. Only for DIARETDB1 and e-ophtha.
+
 ##Using the code
 
 ###Requirements
-* Microsoft Windows (7, 8 or 10), OSX El Capital or macOS Sierra.
-* MATLAB R2015b.
+* Microsoft Windows (7, 8 or 10), OSX El Capitan or macOS Sierra.
+* MATLAB R2015b or superior.
 
 ###First things to do
  >* Create your own copy of this repository.
- >* The folder ```/external/``` contains third-party code, that is essential for processing. We provide such files, but in order to be updated you should download the following external libraries and paste them in ```/external/```:
+ >* The folder ```/external/``` contains third-party code, that is essential for processing. We provide such files, but if you want to have the last version of those libraries you should download them and paste them in ```/external/```:
   * [VLFeat (for ROC and Pr/Re curves)](http://www.vlfeat.org/install-matlab.html)
   * [Random Forest code](https://github.com/PetterS/hep-2/tree/master/randomforest-matlab/RF_Class_C)
   * [Matconvnet](https://github.com/vlfeat/matconvnet)
->* Download [```ConfigurationFiles.rar``` [9 KB]](https://app.box.com/s/whcnmehs1f6pe05r7qitx0b0erecs9dt) and decompress it on ```red-lesion-detection``` folder. This folder contains all the configuration scripts that are required for our scripts.
 
-### How to use this code 
+### How to use this code
 
-* Move to the project root
+* Move current folder on MATLAB to the project root
 
 ```matlab
 cd red-lesion-detection
@@ -121,7 +159,7 @@ dr_setup
 ```matlab
 script_extract_lesion_candidates
 ```
->**Remember:** You must edit ```config_extract_lesion_candidates``` before running this script to indicate the path where your images are located and to fix $L$, $k$ and $\text{px}$ values. If you don't now how to set up this parameters, you can use the scripts ```script_optimize_candidates_detection``` and ```script_optimize_number_of_pxs``` to give yourself an idea about how changing this values affect the FPI and per lesion sensitivity values you obtain on your train set. 
+>**Remember:** You must edit ```config_extract_lesion_candidates``` before running this script to indicate the path where your images are located and to fix $L$, $k$ and $\text{px}$ values. If you don't now how to set up this parameters, you can use the scripts ```script_optimize_candidates_detection``` and ```script_optimize_number_of_pxs``` to give yourself an idea about how changing this values affect the FPI and per lesion sensitivity values you obtain on your train set.
 
 * Once you extracted the red lesion candidates, you have to extract patches for training a CNN from scratch. You can do it using:
 ```matlab
@@ -147,68 +185,33 @@ script_train_lesion_classifier
 script_segment_red_lesions
 ```
 
->**Remember:** 
+>**Remember:**
 >- You must edit ```config_segment_red_lesions``` before running this script to indicate the path where your data set is located.
->- Ensure yourself that your data set folder is properly structured in such a way that you can find at least two folders inside: ```images```, with all your images; and ````masks```, with all your FOV masks. 
+>- Ensure yourself that your data set folder is properly structured in such a way that you can find at least two folders inside: ```images```, with all your images; and ```masks```, with all your FOV masks.
 >- If you want to use hand-crafted features also, you must have vessel segmentations for each of the images. Go to **How to use our segmentation method** for more details about how to do it.
 >- Again, you have to provide paths to where the pretrained CNN (```cnn_filename```) and your Random Forest classifier (```trained_model_name```) are located.
-
-### How to use this code to reproduce IPMI results
-Due to the random nature of some parts of our pipeline (splits into training and validation, dropouts in the CNN, etc.) it might happen that final results are not exactly the same than the one we report. However, you can download our pretrained models from here. In that case, results should be the same.
-
-#### Red lesion detection on DIARETDB1 test set (using Seoud et al., 2016 definition of red lesions)
-> 
-> **Pre-trained CNN ** [Download (789 KB)](https://app.box.com/s/vkmz7ckcrrxll6sr0u9jdyemf5d3axww)
-> **Pre-trained Random Forest classifier using hand crafted features** [Download (606 KB)](https://app.box.com/s/xd95h7ftvyhypteb44uw7ocrzr6mnznj)
-> **Pre-trained Random Forest classifier using both CNN and hand crafted features** [Download (701 KB)](https://app.box.com/s/4h1j6kmvh7im6ri0fpi41kxmbdnbimtd)
-> **DIARETDB1 training set vessel segmentations** [Download (993 KB)](https://app.box.com/s/ex0pffs3lrmi9uk2ykhuepnz8mwvftqw)
-> **DIARETDB1 training set red lesion candidates** [Download (100 KB)](https://app.box.com/s/cz2jg7wbbyudq25j8zpi4unutxf38zob)
-> **DIARETDB1 test set vessel segmentations** [Download (2 MB)](https://app.box.com/s/r08z0lj1yoeu3f402hitwayayl2gio43)
-> **DIARETDB1 test set red lesion candidates** [Download (204 KB)](https://app.box.com/s/8fd9y11cnhwi6d5iapiui557hrnwiwj8)
-
-#### Small red lesion detection on e-ophtha
-
-> **Pre-trained CNN** [Download (708 KB)](https://app.box.com/s/n8xlvk081gynak7fuyl2dlmxxdzd00xo)
-> **Pre-trained Random Forest classifier using hand crafted features** [Download (660 KB)](https://app.box.com/s/pstelijtuirubb8bmgllm09yq1aaa98e)
-> **Pre-trained Random Forest classifier using both CNN and hand crafted features** [Download (388 KB)](https://app.box.com/s/d6dn67dnqgf7xi50vh2t44oi4lb5ywmo)
-> **DIARETDB1-ROC training set vessel segmentations** [Download (2 MB)](https://app.box.com/s/mhv1jgynrhvdtobtidgplp48u7a218ol)
-> **DIARETDB1-ROC training set red lesion candidates** [Download (249 KB)](https://app.box.com/s/vz0x8mswztnz8oin22l6fq03ja304fmh)
-> **e-ophtha vessel segmentations** [Download (9.2 MB)](https://app.box.com/s/aiokhcnqqmbwqlfkr8u4tpjv207jzkoa)
-> **e-ophtha red lesion candidates** [Download (1.3 MB)](https://app.box.com/s/njer3pohrm6xz613ca6ex701g7u7pket)
-
-#### Red lesion detection on MESSIDOR using our model trained on DIARETDB1
-
-> **MESSIDOR vessel segmentations** [Download (23.3 MB)](https://app.box.com/s/hkibmy2m3kfm142dyt61fqu1p61vqoxs)
-> **MESSIDOR red lesion candidates** [Download (3.9 MB)](https://app.box.com/s/915fgkhjdr5da5q5nweaa6m69t5a8dwb)
 
 
 ### How to use our code for vessel segmentation in fundus images
 
-Our code here is a slightly modified version of [our TBME paper](https://scholar.google.com/citations?view_op=view_citation&hl=es&user=2N3oD28AAAAJ&citation_for_view=2N3oD28AAAAJ:Y0pCki6q_DkC) on vessel segmentation. Actually, it's almost the same version we used in [our SIPAIM 2016 paper](https://scholar.google.com/citations?view_op=view_citation&hl=es&user=2N3oD28AAAAJ&citation_for_view=2N3oD28AAAAJ:eQOLeE2rZwMC) ([code here](https://github.com/ignaciorlando/overfeat-glaucoma)). 
+Our code here is a slightly modified version of [our TBME paper](https://scholar.google.com/citations?view_op=view_citation&hl=es&user=2N3oD28AAAAJ&citation_for_view=2N3oD28AAAAJ:Y0pCki6q_DkC) on vessel segmentation. Actually, it's almost the same version we used in [our SIPAIM 2016 paper](https://scholar.google.com/citations?view_op=view_citation&hl=es&user=2N3oD28AAAAJ&citation_for_view=2N3oD28AAAAJ:eQOLeE2rZwMC) ([code here](https://github.com/ignaciorlando/overfeat-glaucoma)).
 
 We will give you some insight about how to use it. It might be a bit unstable in terms of folders and operating systems. We are happy to accept your contributions as pull requests. If you are interested, please contact me.
 
-OK, so let's start. 
+OK, so let's start.
 
-* Our segmentation method is trained on DRIVE. We are still working on a way to scale models to different resolutions to avoid retraining, but so far the best strategy we found is to normalize image sizes, resize them to a similar resolution than the one in DRIVE, and then to upsample segmentations to the original resolution. The first thing to do, then, is to manually analyze your data to estimate the scale factor. This is done my manually indicating the main vessel calibre on your data set, using:
-
-	```script_measure_vessel_calibre_manually```
-
-	This script will popup an image with a rectangle around a random area of the image. You can drag that rectangle around the area where you want to zoom in, and then use double-clic to effectively zoom in there. Then, you have to draw an orthogonal line for the wider vessel. Repeat this 3 times, and for 5 images.
+* Our segmentation method is trained on DRIVE. We are still working on a way to scale models to different resolutions to avoid retraining, but so far the best strategy we found is to normalize image sizes, resize them to a similar resolution than the one in DRIVE, and then to upsample segmentations to the original resolution. The first thing to do, then, is to manually analyze your data to estimate the scale factor. This is done my manually indicating the main vessel calibre on your data set, using ```script_measure_vessel_calibre_manually```. This script will popup an image with a rectangle around a random area of the image. You can drag that rectangle around the area where you want to zoom in, and then use double-clic to effectively zoom in there. Then, you have to draw an orthogonal line for the wider vessel. Repeat this 3 times, and for 5 images.
 * This code will output a ```downsample_value```.
 
-* Now, [download our segmentation model (3.9 MB)](https://app.box.com/s/b1uqilgst2tyb982zfp21cidwp6tkjzh) trained on DRIVE and save it on a known folder.
+* Now, [download our segmentation model (3.9 MB)](https://www.dropbox.com/s/et5vplpmupbuay0/segmentation-model.rar?dl=0) trained on DRIVE and save it on a known folder.
 * Edit  ```config_segment_vessels``` and assign ```scale_values = downsample_value```, and your data set name.
 * Run  ```script_segment_vessels``` .
 
 >**Warning!** You have to have sufficient space on your hard disk. This method will copy your entire data set to a separate folder, where all images will be downsample to the proper resolution.
 
-##Download our results
 
-If you are in a rush and you don't want to run all our code but comparing your results with ours instead, you can download from here our segmentations on [DIARETDB1 test set (2.5 MB)](https://app.box.com/s/527vhsjodgevqww9rc8yujtpdf5t2g1a), [e-ophtha (22.8 MB)](https://app.box.com/s/zyj2lncvc6t4xeherhlqj731cskjxgqu) and [MESSIDOR (96.5 MB)](https://app.box.com/s/p19444z1nksahr5lmu475e52yq4odm6q). 
+## Acknowledgments
 
-We provide:
-
-* **Probability maps:** as .MAT files, with the same size of images but as cropped around the FOV.
-* **Binary segmentations:** obtained by thresholding the probability maps at a 50% probability. Again, their size is equivalent to the size of the image cropped around the FOV.
-* **FROC curves:** as .FIG files. Additional data to plot it is on a .MAT file. Only for DIARETDB1 and e-ophtha.
+* This work is partially funded by ANPCyT PICT 2014-1730, Internal Funds KU Leuven and FP7-MC-CIG 334380.
+* J.I.O. is funded by a doctoral scholarship granted by CONICET (Argentina).
+* J.I.O. would also like to thank NK and CFK. They know why :-)
