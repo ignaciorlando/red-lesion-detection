@@ -1,6 +1,8 @@
 
 root = pwd ;
 
+mkdir('data');
+
 % copy all default configuration files to configuration
 if exist('configuration', 'file')==0
     % Create folder
