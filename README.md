@@ -3,7 +3,7 @@
 
 Created by José Ignacio Orlando at Pladema Institute (Facultad de Ciencias Exactas, UNCPBA, Tandil, Argentina) and CONICET (Consejo Nacional de Investigaciones Científicas y Técnicas, Argentina), under the supervision of [Dr. Matthew B. Blaschko](http://homes.esat.kuleuven.be/~mblaschk/) (ESAT-Visics, KU Leuven, Leuven, Belgium).
 
-![Image and ground truth label](http://i.imgur.com/OHMPR87.png)
+![Qualitative example of our results](http://i.imgur.com/oa0jFM4.png)
 
 ##Introduction
 This code implements a red lesion detection method based on a combination of hand-crafted features and CNN based descriptors. Our paper is under revision now, so please do not use this repository until we release the paper.
