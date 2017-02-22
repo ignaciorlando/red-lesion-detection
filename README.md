@@ -3,11 +3,13 @@
 
 Created by José Ignacio Orlando at Pladema Institute (Facultad de Ciencias Exactas, UNCPBA, Tandil, Argentina) and CONICET (Consejo Nacional de Investigaciones Científicas y Técnicas, Argentina), under the supervision of [Dr. Matthew B. Blaschko](http://homes.esat.kuleuven.be/~mblaschk/) (ESAT-Visics, KU Leuven, Leuven, Belgium).
 
+![Qualitative example of our results](http://i.imgur.com/oa0jFM4.png)
 
 ##Introduction
 This code implements a red lesion detection method based on a combination of hand-crafted features and CNN based descriptors. Our paper is under revision now, so please do not use this repository until we release the paper.
 
 The repository includes:
+
 1. A new version of our blood vessel segmentation method based on fully connected CRFs learned with SOSVMs. [[paper]](https://lirias.kuleuven.be/bitstream/123456789/531621/3/OrlandoTBME2016.pdf) [[original implementation]](https://github.com/ignaciorlando/fundus-vessel-segmentation-tbme)
 2. A red lesion detection method based on using CNN's and hand crafted features in combination with random forest.
 3. Code for preparing data from [DIARETDB1](http://www.it.lut.fi/project/imageret/diaretdb1/), [ROC](http://webeye.ophth.uiowa.edu/ROC/), [e-ophtha](http://www.adcis.net/en/Download-Third-Party/E-Ophtha.html) and [MESSIDOR](http://www.adcis.net/en/Download-Third-Party/Messidor.html) for our experiments.
