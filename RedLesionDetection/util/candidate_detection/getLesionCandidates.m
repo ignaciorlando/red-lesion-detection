@@ -16,6 +16,7 @@ function [ candidates ] = getLesionCandidates(I, fov_mask, scales, K, px)
     if (exist('scales', 'var')==0)
         scales = [9, 12, 15, 17, 19, 21];
     end
+    
     % preprocess the image
     [I] = walterKleinContrastEnhancement(I, fov_mask);
     

@@ -52,7 +52,7 @@ function ma_color = imshowMA(I, ma, method)
             th = 0:pi/50:2*pi;
             xunit = r * cos(th) + x;
             yunit = r * sin(th) + y;
-            plot(xunit, yunit, '-r', 'LineWidth', 2);
+            plot(xunit, yunit, '-b', 'LineWidth', 1);
             
         end
         hold off
