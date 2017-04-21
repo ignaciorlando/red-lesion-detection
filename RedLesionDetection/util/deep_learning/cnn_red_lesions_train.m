@@ -37,6 +37,13 @@ opts.p_dropout = 0;
 opts.fc_layer = 64;
 opts = vl_argparse(opts, varargin) ;
 
+
+%  if gpuDeviceCount > 0
+%      opts.gpus = [1];
+% %     imdb.images.data = gpuArray(imdb.images.data);
+% %     imdb.images.labels = gpuArray(imdb.images.labels);
+%  end
+
 if ~exist(opts.expDir, 'dir'), mkdir(opts.expDir) ; end
 if isempty(opts.train), opts.train = find(imdb.images.set==1) ; end
 if isempty(opts.val), opts.val = find(imdb.images.set==2) ; end

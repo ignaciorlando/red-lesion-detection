@@ -2,7 +2,9 @@
 %load('C:\Users\USUARIO\Dropbox\RetinalImaging\Writing\drscreening2016paper\data\DIARETDB1-ROCh\train\ma_candidates_data\imdb-red-lesions-windows-ma-augmented.mat');
 %load('C:\Users\USUARIO\Dropbox\RetinalImaging\Writing\drscreening2016paper\data\DIARETDB1-ROCh\train\ma_candidates_data\imdb-red-lesions-windows-ma.mat');
 %load('/Users/ignaciorlando/Dropbox/RetinalImaging/Writing/drscreening2016paper/data/e-ophtha/ma_candidates_data/imdb-red-lesions-windows-ma.mat');
-load('/Users/ignaciorlando/Dropbox/RetinalImaging/Writing/drscreening2016paper/data/DIARETDB1/train/red-lesions_candidates_data/imdb-red-lesions-windows-red-lesions.mat');
+%load('/Users/ignaciorlando/Dropbox/RetinalImaging/Writing/drscreening2016paper/data/DIARETDB1/train/red-lesions_candidates_data/imdb-red-lesions-windows-red-lesions.mat');
+
+load('C:\_diabetic_retinopathy_testing_software\DIARETDB1\train\red-lesions_candidates_data\imdb-red-lesions-windows-red-lesions.mat');
 
 different_labels = unique(imdb.images.labels);
 

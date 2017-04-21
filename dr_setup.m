@@ -46,6 +46,9 @@ else
     vl_setup;
 end
 
+% if gpuDeviceCount > 0
+%     vl_compilenn('EnableGpu', true, 'CudaMethod', nvcc, 'EnableDouble', true, 'EnableCudnn', false);
+% end
 % if Matconvnet does not exist, show a warning message
 if exist(fullfile(root,'external','matconvnet-master', 'matlab'))==0
     warning('We could not find Matconvnet. Please, download the package from here: https://github.com/vlfeat/matconvnet/');
@@ -62,7 +65,7 @@ else
 
     if numel(dir(fullfile(root, 'matlab', 'mex', 'vl_nnconv.mex*'))) == 0
         % compile MEX files
-        vl_compilenn;
+        vl_compilenn('EnableGpu',false);
     end
 end
     

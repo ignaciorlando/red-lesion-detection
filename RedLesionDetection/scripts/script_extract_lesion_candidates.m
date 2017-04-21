@@ -31,6 +31,10 @@ for i = 1 : length(img_names)
     % segmentation
     I = imread(fullfile(root_path, 'images', img_names{i}));
     mask = imread(fullfile(root_path, 'masks', mask_names{i}));
+
+    % This is to adapt the size of the lesions to the parameter that we
+    % give
+    scales = L0:step:round(L/1425 * size(mask,2));
     
     % get candidates
     [ current_candidates ] = getLesionCandidates(I, mask>0, scales, K, px);
