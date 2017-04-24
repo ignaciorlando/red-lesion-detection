@@ -6,7 +6,7 @@ function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_le
     % -------------------------------------------------------   
     % Generate logical matrices
     red_lesion_candidates = red_lesion_candidates > 0;
-    segm = segm > 0;
+    segm = segm(:,:,1) > 0;
     % Transform image to double
     I = im2double(I);
     if (size(I,1) ~= size(segm,1))
