@@ -4,10 +4,10 @@ function [outputImage] = imageInpainting(I_in, segm)
     % PREPROCESS SEGMENTATIONS
     % ---------------------------------------------------------------------
 
+    % get structures with more than 100 pixels
+    segm = bwareaopen(segm, round(100/536 * size(segm,2)));
     % apply a closing to compensate error in the central reflex
     segm = imclose(segm, strel('disk',2,8));
-    % get structures with more than 100 pixels
-    segm = bwareaopen(segm, 100);
     % dilate to improve inpainting
     segm = imdilate(segm, strel('disk',2,8));
 
