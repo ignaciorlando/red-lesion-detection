@@ -1,11 +1,10 @@
-#Red lesion detection in fundus images for diabetic retinopathy screening
-
+# Red lesion detection in fundus images for diabetic retinopathy screening
 
 Created by José Ignacio Orlando at Pladema Institute (Facultad de Ciencias Exactas, UNCPBA, Tandil, Argentina) and CONICET (Consejo Nacional de Investigaciones Científicas y Técnicas, Argentina), under the supervision of [Dr. Matthew B. Blaschko](http://homes.esat.kuleuven.be/~mblaschk/) (ESAT-Visics, KU Leuven, Leuven, Belgium).
 
 ![Qualitative example of our results](http://i.imgur.com/oa0jFM4.png)
 
-##Introduction
+## Introduction
 This code implements a red lesion detection method based on a combination of hand-crafted features and CNN based descriptors. Our paper is under revision now, so please do not use this repository until we release the paper.
 
 The repository includes:
@@ -15,10 +14,10 @@ The repository includes:
 3. Code for preparing data from [DIARETDB1](http://www.it.lut.fi/project/imageret/diaretdb1/), [ROC](http://webeye.ophth.uiowa.edu/ROC/), [e-ophtha](http://www.adcis.net/en/Download-Third-Party/E-Ophtha.html) and [MESSIDOR](http://www.adcis.net/en/Download-Third-Party/Messidor.html) for our experiments.
 4. FROC curve computation.
 
-##License
+## License
 Our code is released under the MIT Licence (refer to the LICENSE file for details).
 
-##Citing
+## Citing
 Our paper is still under review. Please do not use this repository in your research until we release a valid citation to include.
 
 If you use our segmentation method, please cite the following papers:
@@ -120,7 +119,7 @@ Due to the random nature of some parts of our pipeline (splits into training and
 > *Red lesion candidates* [Download](https://www.dropbox.com/s/23a8umf7w4z8teb/messidor-red-lesions_candidates.rar?dl=0)
 
 
-##Download our results
+## Download our results
 
 If you are in a rush and you don't want to run all our code but comparing your results with ours instead, you can download from here our segmentations on [DIARETDB1 test set](https://www.dropbox.com/s/p8m72cull37x9u8/DIARETDB1_test.rar?dl=0), [e-ophtha](https://www.dropbox.com/s/r0k67g1djg6f2fo/e-ophtha.rar?dl=0) and [MESSIDOR](https://www.dropbox.com/s/7ck7eh3ke6987p0/MESSIDOR.rar?dl=0).
 
@@ -130,13 +129,13 @@ We provide:
 * **Binary segmentations:** obtained by thresholding the probability maps at a 50% probability. Again, their size is equivalent to the size of the image cropped around the FOV.
 * **FROC curves:** as .FIG files. Additional data to plot it is on a .MAT file. Only for DIARETDB1 and e-ophtha.
 
-##Using the code
+## Using the code
 
-###Requirements
+### Requirements
 * Microsoft Windows (7, 8 or 10), OSX El Capitan or macOS Sierra.
-* MATLAB R2015b or superior.
+* MATLAB R2015a or superior. If you use MATLAB R2016b in Windows it might be possible that you won't be able to run ```vl_compilenn```. Let me know in that case and I will send to you the binary files you need :)
 
-###First things to do
+### First things to do
  >* Create your own copy of this repository.
  >* The folder ```/external/``` contains third-party code, that is essential for processing. We provide such files, but if you want to have the last version of those libraries you should download them and paste them in ```/external/```:
   * [VLFeat (for ROC and Pr/Re curves)](http://www.vlfeat.org/install-matlab.html)
