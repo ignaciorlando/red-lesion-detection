@@ -73,107 +73,107 @@ function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_le
         % INTENSITY STATISTICS
         % -----------------------------------------------------------------
         index = 1;
-        % Mean red intensity
+        % 1. Mean red intensity
         ma_features(i, index) = mean(red(px)); index = index+1;
-        % Mean green intensity
+        % 2. Mean green intensity
         ma_features(i, index) = mean(green(px)); index = index+1; 
-        % Mean blue intensity
+        % 3. Mean blue intensity
         ma_features(i, index) = mean(blue(px)); index = index+1; 
-        % Mean walter intensity
+        % 4. Mean walter intensity
         ma_features(i, index) = mean(walter(px)); index = index+1; 
-        % Mean red intensity from CLAHE image
+        % 5. Mean red intensity from CLAHE image
         ma_features(i, index) = mean(red_c(px)); index = index+1; 
-        % Mean green intensity from CLAHE image
+        % 6. Mean green intensity from CLAHE image
         ma_features(i, index) = mean(green_c(px)); index = index+1; 
-        % Mean blue intensity from CLAHE image
+        % 7. Mean blue intensity from CLAHE image
         ma_features(i, index) = mean(blue_c(px)); index = index+1; 
-        % Mean walter intensity from CLAHE image
+        % 8. Mean walter intensity from CLAHE image
         ma_features(i, index) = mean(walter_c(px)); index = index+1; 
-        % Mean red intensity from color equalized image
+        % 9. Mean red intensity from color equalized image
         ma_features(i, index) = mean(red_eq(px)); index = index+1; 
-        % Mean green intensity from color equalized image
+        % 10. Mean green intensity from color equalized image
         ma_features(i, index) = mean(green_eq(px)); index = index+1; 
-        % Mean blue intensity from color equalized image
+        % 11. Mean blue intensity from color equalized image
         ma_features(i, index) = mean(blue_eq(px)); index = index+1; 
-        % Mean intensity from I_sc
+        % 12. Mean intensity from I_sc
         ma_features(i, index) = mean(I_sc(px)); index = index+1; 
         % 12 FEATURES SO FAR
         
-        % Total red intensity
+        % 13. Total red intensity
         ma_features(i, index) = sum(red(px)); index = index+1; 
-        % Total green intensity
+        % 14. Total green intensity
         ma_features(i, index) = sum(green(px)); index = index+1; 
-        % Total blue intensity
+        % 15. Total blue intensity
         ma_features(i, index) = sum(blue(px)); index = index+1; 
-        % Total walter intensity
+        % 16. Total walter intensity
         ma_features(i, index) = sum(walter(px)); index = index+1; 
-        % Total red intensity from CLAHE image
+        % 17. Total red intensity from CLAHE image
         ma_features(i, index) = sum(red_c(px)); index = index+1; 
-        % Total green intensity from CLAHE image
+        % 18. Total green intensity from CLAHE image
         ma_features(i, index) = sum(green_c(px)); index = index+1; 
-        % Total blue intensity from CLAHE image
+        % 19. Total blue intensity from CLAHE image
         ma_features(i, index) = sum(blue_c(px)); index = index+1; 
-        % Total walter intensity from CLAHE image
+        % 20. Total walter intensity from CLAHE image
         ma_features(i, index) = sum(walter_c(px)); index = index+1; 
-        % Total red intensity from color equalized image
+        % 21. Total red intensity from color equalized image
         ma_features(i, index) = sum(red_eq(px)); index = index+1;
-        % Total green intensity from color equalized image
+        % 22. Total green intensity from color equalized image
         ma_features(i, index) = sum(green_eq(px)); index = index+1; 
-        % Total blue intensity from color equalized image
+        % 23. Total blue intensity from color equalized image
         ma_features(i, index) = sum(blue_eq(px)); index = index+1; 
-        % Total intensity from I_sc
+        % 24. Total intensity from I_sc
         ma_features(i, index) = sum(I_sc(px)); index = index+1;    
         % 12 FEATURES MORE (24 FEATURES SO FAR) 
         
-        % Std red intensity
+        % 25. Std red intensity
         ma_features(i, index) = std(red(px)); index = index+1; 
-        % Std green intensity
+        % 26. Std green intensity
         ma_features(i, index) = std(green(px)); index = index+1; 
-        % Std blue intensity
+        % 27. Std blue intensity
         ma_features(i, index) = std(blue(px)); index = index+1; 
-        % Std walter intensity
+        % 28. Std walter intensity
         ma_features(i, index) = std(walter(px)); index = index+1; 
-        % Std red intensity from CLAHE image
+        % 29. Std red intensity from CLAHE image
         ma_features(i, index) = std(red_c(px)); index = index+1; 
-        % Std green intensity from CLAHE image
+        % 30. Std green intensity from CLAHE image
         ma_features(i, index) = std(green_c(px)); index = index+1; 
-        % Std blue intensity from CLAHE image
+        % 31. Std blue intensity from CLAHE image
         ma_features(i, index) = std(blue_c(px)); index = index+1; 
-        % Std walter intensity from CLAHE image
+        % 32. Std walter intensity from CLAHE image
         ma_features(i, index) = std(walter_c(px)); index = index+1; 
-        % Std red intensity from color equalized image
+        % 33. Std red intensity from color equalized image
         ma_features(i, index) = std(red_eq(px)); index = index+1; 
-        % Std green intensity from color equalized image
+        % 34. Std green intensity from color equalized image
         ma_features(i, index) = std(green_eq(px)); index = index+1; 
-        % Std blue intensity from color equalized image
+        % 35. Std blue intensity from color equalized image
         ma_features(i, index) = std(blue_eq(px)); index = index+1;    
-        % Std intensity from I_sc
+        % 36. Std intensity from I_sc
         ma_features(i, index) = std(I_sc(px)); index = index+1;           
         % 12 FEATURES MORE (36 FEATURES SO FAR)
         
-        % Contrast red intensity
+        % 37. Contrast red intensity
         ma_features(i, index) = mean(red(px)) - mean(red(px_surrounding)); index = index+1;
-        % Contrast green intensity
+        % 38. Contrast green intensity
         ma_features(i, index) = mean(green(px)) - mean(green(px_surrounding)); index = index+1; 
-        % Contrast blue intensity
+        % 39. Contrast blue intensity
         ma_features(i, index) = mean(blue(px)) - mean(blue(px_surrounding)); index = index+1; 
-        % Contrast walter intensity
+        % 40. Contrast walter intensity
         ma_features(i, index) = mean(walter(px)) - mean(walter(px_surrounding)); index = index+1; 
-        % Contrast red intensity from CLAHE image
+        % 41. Contrast red intensity from CLAHE image
         ma_features(i, index) = mean(red_c(px)) - mean(red_c(px_surrounding)); index = index+1; 
-        % Contrast green intensity from CLAHE image
+        % 42. Contrast green intensity from CLAHE image
         ma_features(i, index) = mean(green_c(px)) - mean(green_c(px_surrounding)); index = index+1; 
-        % Contrast blue intensity from CLAHE image
+        % 43. Contrast blue intensity from CLAHE image
         ma_features(i, index) = mean(blue_c(px)) - mean(blue_c(px_surrounding)); index = index+1; 
-        % Contrast walter intensity from CLAHE image
+        % 44. Contrast walter intensity from CLAHE image
         ma_features(i, index) = mean(walter_c(px)) - mean(walter_c(px_surrounding)); index = index+1; 
-        % Contrast red intensity from color equalized image
+        % 45. Contrast red intensity from color equalized image
         ma_features(i, index) = mean(red_eq(px)) - mean(red_eq(px_surrounding)); index = index+1; 
-        % Contrast green intensity from color equalized image
+        % 46. Contrast green intensity from color equalized image
         ma_features(i, index) = mean(green_eq(px)) - mean(green_eq(px_surrounding)); index = index+1; 
-        % Contrast blue intensity from color equalized image
+        % 47. Contrast blue intensity from color equalized image
         ma_features(i, index) = mean(blue_eq(px)) - mean(blue_eq(px_surrounding)); index = index+1; 
-        % Contrast intensity from I_sc
+        % 48. Contrast intensity from I_sc
         ma_features(i, index) = mean(I_sc(px)) - mean(I_sc(px_surrounding)); index = index+1; 
         % 12 FEATURES MORE (48 FEATURES SO FAR)
 
@@ -181,21 +181,21 @@ function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_le
         if (background_deviation==0)
             background_deviation = 1;
         end        
-        % Normalized total intensity in I_green
+        % 49. Normalized total intensity in I_green
         ma_features(i, index) = (sum(green(px)) - mean(I_bg(px))) / background_deviation; index = index+1; 
-        % Normalized total intensity in I_sc
+        % 50. Normalized total intensity in I_sc
         ma_features(i, index) = (sum(I_sc(px)) - mean(I_bg(px))) / background_deviation; index = index+1; 
-        % Normalized total intensity in walter
+        % 51. Normalized total intensity in walter
         ma_features(i, index) = (sum(walter(px)) - mean(I_bg(px))) / background_deviation; index = index+1; 
         % 3 FEATURES MORE (51 FEATURES SO FAR)
         
-        % Normalized average intensity in walter
+        % 52. Normalized average intensity in walter
         ma_features(i, index) = (mean(walter(px)) - mean(I_bg(px))) / background_deviation; index = index+1; 
         % 1 FEATURE MORE (52 FEATURES SO FAR)
         
-        % I_darkest in I_match
+        % 53. I_darkest in I_match
         ma_features(i, index) = min(I_match(px)); index = index+1; 
-        % Mean intensity in the candidate region on I_tophat
+        % 54. Mean intensity in the candidate region on I_tophat
         ma_features(i, index) = mean(I_tophat(px)); index = index + 1;
         % 2 FEATURES MORE (54 FEATURES SO FAR)
         
@@ -211,19 +211,19 @@ function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_le
         % SHAPE STATISTICS
         % -----------------------------------------------------------------
         
-        % Area
+        % 55. Area
         ma_features(i, index) = stats(i).Area;  index = index+1;
-        % Perimeters
+        % 56. Perimeters
         ma_features(i, index) = stats(i).Perimeter;  index = index+1;
-        % Aspect ratio
+        % 57. Aspect ratio
         ma_features(i, index) = stats(i).MajorAxisLength / stats(i).MinorAxisLength;  index = index+1;
-        % Circularity
+        % 58. Circularity
         perimeter = stats(i).Perimeter;
         if (perimeter==0)
             perimeter=1;
         end
         ma_features(i, index) = (4*pi*stats(i).Area) / (perimeter)^2;   index = index+1;
-        % Compactness
+        % 59. Compactness
         if (stats(i).Perimeter==0)
             v = 0;
         else
@@ -232,13 +232,15 @@ function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_le
             v = sqrt(sum(sum((di - d) .^ 2,2))) / stats(i).Perimeter;
         end
         ma_features(i, index) = v;  index = index+1;
-        % Major axis length
+        % 60. Major axis length
         ma_features(i, index) = stats(i).MajorAxisLength;  index = index+1;
-        % Minor axis length
+        % 61. Minor axis length
         ma_features(i, index) = stats(i).MinorAxisLength;
-        % Eccentricity
+        % 62. Eccentricity
         ma_features(i, index) = stats(i).Eccentricity;
-        % 8 FEATURES MORE (62 FEATURES SO FAR)
+        % 63. Is inside a segmentation?
+        ma_features(i, index) = sum(segm(px)) / length(px);
+        % 9 FEATURES MORE (63 FEATURES SO FAR)
         
     end
     
