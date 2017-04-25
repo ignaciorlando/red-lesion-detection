@@ -39,7 +39,9 @@ opts = vl_argparse(opts, varargin) ;
 
 
  if gpuDeviceCount > 0
-     opts.gpus = [1];
+     opts.gpus = 1;
+     imdb.meta.beta = (imdb.meta.beta);
+     imdb.meta.gamma = (imdb.meta.gamma);
 %     imdb.images.data = gpuArray(imdb.images.data);
 %     imdb.images.labels = gpuArray(imdb.images.labels);
  end
