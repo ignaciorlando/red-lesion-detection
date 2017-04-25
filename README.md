@@ -1,5 +1,5 @@
-
 #Red lesion detection in fundus images for diabetic retinopathy screening
+
 
 Created by José Ignacio Orlando at Pladema Institute (Facultad de Ciencias Exactas, UNCPBA, Tandil, Argentina) and CONICET (Consejo Nacional de Investigaciones Científicas y Técnicas, Argentina), under the supervision of [Dr. Matthew B. Blaschko](http://homes.esat.kuleuven.be/~mblaschk/) (ESAT-Visics, KU Leuven, Leuven, Belgium).
 
