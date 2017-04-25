@@ -33,7 +33,9 @@ for i = 1 : length(img_names)
     mask = imread(fullfile(root_path, 'masks', mask_names{i}));
     
     % get candidates
+    tic
     [ current_candidates ] = getLesionCandidates(I, mask, L0, step, L, K, px);
+    toc
     
     % get only the image name
     [~, filename, extension] = fileparts(img_names{i});
