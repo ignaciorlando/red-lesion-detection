@@ -1,7 +1,7 @@
 function [I_out] = contrastEqualization(I, mask)
 
     I_out = uint8(zeros(size(I)));
-    w = floor(3*(size(I,1))/30);
+    w = floor(3*(size(I,2))/30);
     
     for i = 1 : size(I,3)
         
