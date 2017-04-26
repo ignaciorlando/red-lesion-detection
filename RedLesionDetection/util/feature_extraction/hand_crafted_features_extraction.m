@@ -33,7 +33,7 @@ function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_le
     I_bg = im2double(medfilt2(uint8(green*255), [w_size w_size]));
     I_sc = green - I_bg;
     % Generate I_match
-    I_lesion = imageInpainting(I_sc, segm>0);
+    [I_lesion, segm] = imageInpainting(I_sc, segm>0);
     I_match = imgaussfilt(I_lesion - imfilter(I_lesion, fspecial('average',round(11/536 * size(mask,2)))), 1);
     % I_walter
     [walter] = walterKleinContrastEnhancement(green, mask);
@@ -45,7 +45,7 @@ function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_le
     green_eq = I_eq(:,:,2);
     blue_eq = I_eq(:,:,3);
     % Compute the top hat transformation
-    lengths = 5:2:15;
+    lengths = 5:2:15/536*size(mask,2);
     I_tophat = zeros(size(I,1), size(I,2), length(lengths));
     for i = 1 : length(lengths)
         I_tophat(:,:,i) = getTopHatTransformation(walter,lengths(i));
@@ -53,7 +53,7 @@ function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_le
     I_tophat = max(I_tophat, [], 3);
     
     % Initialize feature vector
-    ma_features = zeros(conn.NumObjects, 62);
+    ma_features = zeros(conn.NumObjects, 63);
     
     % begin feature extraction per each candidate
     for i = 1 : conn.NumObjects
@@ -193,7 +193,7 @@ function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_le
         ma_features(i, index) = (mean(walter(px)) - mean(I_bg(px))) / background_deviation; index = index+1; 
         % 1 FEATURE MORE (52 FEATURES SO FAR)
         
-        % 53. I_darkest in I_match
+        % 53. darkest in I_match
         ma_features(i, index) = min(I_match(px)); index = index+1; 
         % 54. Mean intensity in the candidate region on I_tophat
         ma_features(i, index) = mean(I_tophat(px)); index = index + 1;
