@@ -202,7 +202,7 @@ function [imdb] = get_red_lesion_data_to_classify(dataset_to_extract_data, featu
             end
 
             % save all data
-            save(red_lesion_data_filename, 'imdb');
+            save(red_lesion_data_filename, 'imdb','-v7.3');
 
         end
         
