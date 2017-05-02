@@ -14,6 +14,9 @@ function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_le
     end
     % Get ma candidates
     conn = bwconncomp(red_lesion_candidates);
+    numObjects = conn.NumObjects;
+    pixelIdxList = conn.PixelIdxList;
+    clear conn
     
     % -------------------------------------------------------
     % PREPARE IMAGE FOR FEATURE EXTRACTION
@@ -53,13 +56,13 @@ function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_le
     I_tophat = max(I_tophat, [], 3);
     
     % Initialize feature vector
-    ma_features = zeros(conn.NumObjects, 63);
+    ma_features = zeros(numObjects, 63);
     
     % begin feature extraction per each candidate
-    for i = 1 : conn.NumObjects
+    for i = 1 : numObjects
         
         % retrieve pixels
-        px = conn.PixelIdxList{i};
+        px = pixelIdxList{i};
         % pixel mask
         px_mask = false(size(segm));
         px_mask(px) = true;
@@ -244,6 +247,6 @@ function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_le
         
     end
     
-    candidates_pxs = conn.PixelIdxList';
+    candidates_pxs = pixelIdxList';
 
 end

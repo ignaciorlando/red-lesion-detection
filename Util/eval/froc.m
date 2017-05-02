@@ -16,6 +16,12 @@ function [fpi, per_lesion_sensitivity, froc_score, reference_se_vals] = froc(sco
         end
     end
     thresholds = sort(unique(all_scores(:)));
+    if length(thresholds) > 10000
+        other_thresholds = thresholds(thresholds>0.1);
+        low_thresholds = [0;logspace(-10,-1, 10000-length(other_thresholds))'];
+        thresholds = cat(1,low_thresholds, other_thresholds);
+        clear low_thresholds other_thresholds
+    end
     clear all_scores
 
     if (length(thresholds) > 1)
