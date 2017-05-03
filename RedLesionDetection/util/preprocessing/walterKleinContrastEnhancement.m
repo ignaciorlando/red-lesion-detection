@@ -18,6 +18,7 @@ function [t_output] = walterKleinContrastEnhancement(I, mask, r, W, u_max, u_min
     % fakepad the borders
     w = floor(3*(size(I,2))/30);
     [t, mask_extended] = fakepad(im2double(I), mask, 5, w);
+
     mask_extended = mask_extended > 0;
     
     % compute the mean value on W x W windows

@@ -238,11 +238,11 @@ function [ma_features, candidates_pxs] = hand_crafted_features_extraction(red_le
         % 60. Major axis length
         ma_features(i, index) = stats(i).MajorAxisLength;  index = index+1;
         % 61. Minor axis length
-        ma_features(i, index) = stats(i).MinorAxisLength;
+        ma_features(i, index) = stats(i).MinorAxisLength;   index = index+1;
         % 62. Eccentricity
-        ma_features(i, index) = stats(i).Eccentricity;
+        ma_features(i, index) = stats(i).Eccentricity;   index = index+1;
         % 63. Is inside a segmentation?
-        ma_features(i, index) = sum(segm(px)) / length(px);
+        ma_features(i, index) = sum(segm(px)) / length(px);   index = index+1;
         % 9 FEATURES MORE (63 FEATURES SO FAR)
         
     end
