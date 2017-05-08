@@ -48,11 +48,14 @@ function ma_color = imshowMA(I, ma, method)
             
             x = round(properties(i).Centroid(1));
             y = round(properties(i).Centroid(2));
-            r = round(properties(i).MajorAxisLength + 2);
+            r = round(properties(i).MajorAxisLength + 0.5 * properties(i).MajorAxisLength);
             th = 0:pi/50:2*pi;
             xunit = r * cos(th) + x;
             yunit = r * sin(th) + y;
-            plot(xunit, yunit, '-b', 'LineWidth', 1);
+            if exist('color','var') == 0
+                color = [0 1 0];
+            end
+            plot(xunit, yunit, 'Color', color, 'LineWidth', 1);
             
         end
         hold off
