@@ -26,6 +26,7 @@ switch dataset_name
         extension_masks = '*.gif';
     case fullfile('DIARETDB1', 'test')
         extension = '.png';
+        extension_masks = '*.png';
     case fullfile('e-ophtha')
         extension = '.png';
         extension_masks = '*.png';
@@ -45,7 +46,7 @@ if exist('ground_truth_labels_path', 'var') ~= 0
 end
 
 % For each of the images
-for i = 1 : length(image_filenames)
+for i = 11 : length(image_filenames)
     
     disp(i);
     
@@ -64,6 +65,11 @@ for i = 1 : length(image_filenames)
         I = contrastEqualization(I, fov_mask);
     end
     
+    % If there are ground truth labels, show them superimposed in our image
+    if exist('ground_truth_labels_names', 'var') ~= 0
+        imshowMA(I, gt, 'color',[1 1 0]);
+    end
+    
     % For each method to compare
     for j = 1 : length(methods_to_compare)
         
@@ -73,7 +79,7 @@ for i = 1 : length(image_filenames)
         % If there is a ground truth labelling...
         figure
         if exist('gt','var')==0
-            imshowMA(I, current_red_lesion_segmentation, 'circles');
+            imshowMA(I, current_red_lesion_segmentation, 'circles',[1 1 0]);
         else
             imshowMA_with_ground_truth(I, gt, current_red_lesion_segmentation);
         end
@@ -89,6 +95,10 @@ for i = 1 : length(image_filenames)
             savefig(fullfile(save_results_path, num2str(length(methods_to_compare)+1-j)));
             saveas(gcf, fullfile(save_results_path, strcat(num2str(length(methods_to_compare)+1-j), '.svg')));
             close
+        end
+        if exist('ground_truth_labels_names', 'var') ~= 0
+            savefig(fullfile(save_results_path, num2str(0)));
+            saveas(gcf, fullfile(save_results_path, strcat(num2str(0), '.svg')));
         end
     else
         close all
