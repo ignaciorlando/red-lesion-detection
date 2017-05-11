@@ -1,5 +1,5 @@
 
-function [fpi, per_lesion_sensitivity, froc_score, reference_se_vals] = froc(scores_maps, gt_labels, show_fig)
+function [fpi, per_lesion_sensitivity, froc_score, reference_se_vals, thresholds] = froc(scores_maps, gt_labels, show_fig)
 
     if exist('show_fig','var')==0
         show_fig = true;

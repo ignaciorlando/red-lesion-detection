@@ -38,6 +38,13 @@ else
 end
 
 % if VLFeat does not exist, show a warning message
+if exist(fullfile(root,'external','tsne'), 'dir')==0
+    warning('We could not find t-SNE. Please, download the package from here: https://lvdmaaten.github.io/tsne/');
+else
+    addpath(fullfile(root,'external','tsne')) ; % code for t-SNE representations
+end
+
+% if VLFeat does not exist, show a warning message
 if exist(fullfile(root,'external','vlfeat','toolbox'), 'dir')==0
     warning('We could not find VLFeat. Please, download the package from here: http://www.vlfeat.org/download.html');
 else

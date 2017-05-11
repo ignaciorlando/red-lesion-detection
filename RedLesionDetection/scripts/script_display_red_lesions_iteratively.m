@@ -38,7 +38,7 @@ allFiles = dir(fullfile(image_path, strcat('*', extension)));
 image_filenames = {allFiles.name};
 allFiles = dir(fullfile(fov_masks_path, '*.gif'));
 fov_masks_filenames = {allFiles.name};
-allFiles = dir(fullfile(red_lesion_segmentation_paths{1}, '*.gif'));
+allFiles = dir(fullfile(red_lesion_segmentation_paths{1}, '*.mat'));
 red_lesion_names = {allFiles.name};
 if exist('ground_truth_labels_path', 'var') ~= 0
     allFiles = dir(fullfile(ground_truth_labels_path, extension_masks));
@@ -74,7 +74,9 @@ for i = 11 : length(image_filenames)
     for j = 1 : length(methods_to_compare)
         
         % Read the red lesion segmentation
-        current_red_lesion_segmentation = imread(fullfile(red_lesion_segmentation_paths{j}, red_lesion_names{i})) > 0;
+        %current_red_lesion_segmentation = imread(fullfile(red_lesion_segmentation_paths{j}, red_lesion_names{i})) > 0;
+        A = load(fullfile(red_lesion_segmentation_paths{j}, red_lesion_names{i}));
+        current_red_lesion_segmentation = A.score_map > thresholds(j);
         
         % If there is a ground truth labelling...
         figure

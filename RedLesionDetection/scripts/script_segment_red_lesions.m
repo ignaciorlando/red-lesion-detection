@@ -97,10 +97,10 @@ if (~isempty(gt_labels)) && generate_froc_curve
     else
         figure(1);
     end
-    [fpi, per_lesion_sensitivity, froc_score, reference_se_vals] = froc(score_maps, gt_labels, true);
+    [fpi, per_lesion_sensitivity, froc_score, reference_se_vals, thresholds] = froc(score_maps, gt_labels, true);
     
     save(fullfile(output_path, 'froc_data.mat'), ...
-        'fpi','per_lesion_sensitivity','froc_score','reference_se_vals');
+        'fpi','per_lesion_sensitivity','froc_score','reference_se_vals','thresholds');
     savefig(fullfile(output_path, 'froc_fig.fig'));
 
 end
