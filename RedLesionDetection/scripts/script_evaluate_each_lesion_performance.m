@@ -73,7 +73,7 @@ for k = 1 : length(score_maps_paths)
         figure(1);
     end
     [fpi, per_lesion_sensitivity, froc_score, reference_se_vals, thresholds] = froc(score_maps, gt_labels, true);
-    froc_score = froc_scores(k);
+    froc_scores(k) = froc_score;
     drawnow
     save(fullfile(score_maps_path, strcat(lesion_to_evaluate, '-froc_data.mat')), ...
         'fpi','per_lesion_sensitivity','froc_score','reference_se_vals','thresholds');
