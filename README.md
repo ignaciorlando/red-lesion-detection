@@ -89,7 +89,7 @@ Additionally, if you use Soares *et al.* features or Azzopardi *et al.* features
 
 Due to the random nature of some parts of our pipeline (splits into training and validation, dropouts in the CNN, etc.) it might happen that final results are not exactly the same than the one we report. However, you can download our pretrained models from here. In that case, results should be the same.
 
-> **Pre-trained models**
+#### **Pre-trained models**
 > [Download](https://www.dropbox.com/s/wxohmajmo9cxbc1/red-lesions-detection-model.rar?dl=0)
 
 #### Red lesion detection on DIARETDB1 test set (using Seoud et al., 2016 definition of red lesions)
