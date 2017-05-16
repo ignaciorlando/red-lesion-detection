@@ -36,17 +36,22 @@ end
 % segmentations
 allFiles = dir(fullfile(image_path, strcat('*', extension)));
 image_filenames = {allFiles.name};
+
 allFiles = dir(fullfile(fov_masks_path, '*.gif'));
 fov_masks_filenames = {allFiles.name};
+
 allFiles = dir(fullfile(red_lesion_segmentation_paths{1}, '*.mat'));
 red_lesion_names = {allFiles.name};
+red_lesion_names(strcmp(red_lesion_names,'froc_data.mat')) = [];
+red_lesion_names(strcmp(red_lesion_names,'hemorrhages-froc_data.mat')) = [];
+red_lesion_names(strcmp(red_lesion_names,'ma-froc_data.mat')) = [];
 if exist('ground_truth_labels_path', 'var') ~= 0
     allFiles = dir(fullfile(ground_truth_labels_path, extension_masks));
     ground_truth_labels_names = {allFiles.name};
 end
 
 % For each of the images
-for i = 11 : length(image_filenames)
+for i = 7 : length(image_filenames)
     
     disp(i);
     
