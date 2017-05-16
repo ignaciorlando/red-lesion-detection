@@ -1,5 +1,9 @@
 
-function ma_color = imshowMA(I, ma, method)
+function ma_color = imshowMA(I, ma, method, color)
+
+    if exist('color','var')==0
+        color = [0 1 1];
+    end
 
     if (strcmp(method, 'color'))
 
@@ -14,11 +18,7 @@ function ma_color = imshowMA(I, ma, method)
             % Reproduce all the intensities in the original image, but in the
             % green band set the MA to be green
             I_sub = ma_color(:,:,i);
-            if (i==2)
-                I_sub(ma>0) = 1;
-            else
-                I_sub(ma>0) = 0;
-            end
+            I_sub(ma>0) = color(i);
             ma_color(:,:,i) = I_sub;
         end
 
@@ -48,11 +48,11 @@ function ma_color = imshowMA(I, ma, method)
             
             x = round(properties(i).Centroid(1));
             y = round(properties(i).Centroid(2));
-            r = round(properties(i).MajorAxisLength + 2);
+            r = round(properties(i).MajorAxisLength + 0.5 * properties(i).MajorAxisLength);
             th = 0:pi/50:2*pi;
             xunit = r * cos(th) + x;
             yunit = r * sin(th) + y;
-            plot(xunit, yunit, '-r', 'LineWidth', 2);
+            plot(xunit, yunit, 'Color', color, 'LineWidth', 2);
             
         end
         hold off

@@ -51,11 +51,11 @@ function ma_color = compare_results_using_models(I, binary_masks)
 
             switch j
                 case 1
-                    h1 = plot(xunit, yunit, '-g', 'LineWidth', 1);                    
+                    h1 = plot(xunit, yunit, '-g', 'LineWidth', 2);                    
                 case 2
-                    h2 = plot(xunit, yunit, '-c', 'LineWidth', 1);    
+                    h2 = plot(xunit, yunit, '-c', 'LineWidth', 2);    
                 case 3
-                    h3 = plot(xunit, yunit, '-r', 'LineWidth', 1);
+                    h3 = plot(xunit, yunit, '-r', 'LineWidth', 2);
             end
 
         end
@@ -65,6 +65,6 @@ function ma_color = compare_results_using_models(I, binary_masks)
     
     ma_color = frame2im(getframe(gcf)); 
         
-    legend([h1, h2, h3], {'Hand crafted features + RF', 'CNN', 'Match between methods'});
+    legend([h1, h2, h3], {'RF trained with hand crafted features', 'CNN probabilities', 'Match between methods'});
 
 end

@@ -69,7 +69,7 @@ function [ma_detector, quality] = trainRedLesionDetector(imdb, method)
     elseif (strcmp(method, 'random-forests'))
 
         % initialize an array of different number of trees
-        number_of_trees = 20:20:200;
+        number_of_trees = 100:20:200;
         
         % quality values and models
         quality_values = zeros(length(number_of_trees), 1);

@@ -235,9 +235,11 @@ opts = vl_argparse(opts, varargin);
 % retrieve beta and gamma parameters
 if (isfield(net.meta, 'beta'))
     opts.beta = net.meta.beta;
+    beta = opts.beta;
 end
 if (isfield(net.meta, 'gamma'))
     opts.gamma = net.meta.gamma;
+    gamma = opts.gamma;
 end
 
 n = numel(net.layers) ;
@@ -335,7 +337,7 @@ for i=1:n
       res(i+1).x = vl_nnsoftmaxloss(res(i).x, l.class) ;
       
     case 'classbalancingsoftmaxloss'
-      res(i+1).x = vl_nnclassbalancingsoftmaxloss(res(i).x, l.class, opts.beta, opts.gamma) ;  
+      res(i+1).x = vl_nnclassbalancingsoftmaxloss(res(i).x, l.class, beta, gamma) ;  
       
     case 'relu'
       if l.leak > 0, leak = {'leak', l.leak} ; else leak = {} ; end

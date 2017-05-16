@@ -37,8 +37,9 @@ function net = cnn_init(opts, varargin)
                                'stride', 2, ...
                                'pad', [0 1 0 1]) ;
     net.layers{end+1} = struct('type', 'relu') ;
+    % DROPOUT
     if (net.meta.trainOpts.p_dropout ~= 0)
-        net.layers{end+1} = struct('type', 'dropout', 'rate', net.meta.trainOpts.p_dropout);
+        net.layers{end+1} = struct('type', 'dropout', 'rate', net.meta.trainOpts.p_dropout(1));
     end
     
     % Block 2: CONV + RELU + AVG POOL
@@ -52,7 +53,7 @@ function net = cnn_init(opts, varargin)
                                'method', 'avg', ...
                                'pool', [3 3], ...
                                'stride', 2, ...
-                               'pad', [0 1 0 1]) ; % Emulate caffe                           
+                               'pad', [0 1 0 1]) ; % Emulate caffe 
 
     % Block 3: CONV + RELU + AVG POOL
     net.layers{end+1} = struct('type', 'conv', ...
