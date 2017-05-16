@@ -1,18 +1,22 @@
-# Red lesion detection in fundus images for diabetic retinopathy screening
+# Learning to Detect Red Lesions using Small Training Sets: An Ensemble Approach based on Deep Learned and Hand Crafted Features
 
 Created by José Ignacio Orlando at Pladema Institute (Facultad de Ciencias Exactas, UNCPBA, Tandil, Argentina) and CONICET (Consejo Nacional de Investigaciones Científicas y Técnicas, Argentina), under the supervision of [Dr. Matthew B. Blaschko](http://homes.esat.kuleuven.be/~mblaschk/) (ESAT-Visics, KU Leuven, Leuven, Belgium).
 
-![Qualitative example of our results](http://i.imgur.com/oa0jFM4.png)
+![Graphical abstract of our method](https://raw.githubusercontent.com/ignaciorlando/red-lesion-detection/master/GRAPHICAL_ABSTRACT.png)
 
 ## Introduction
-This code implements a red lesion detection method based on a combination of hand-crafted features and CNN based descriptors. Our paper is under revision now, so please do not use this repository until we release the paper.
+This code implements a red lesion detection method based on a combination of hand-crafted features and CNN based descriptors.
+The main advantage of our approach is that it achieves high performance when evaluated both on a per lesion and a per image basis, being trained with small data sets such as DIARETDB1 (28 images).
+A preprint of the paper explaining our methodology will be released soon.
 
 The repository includes:
 
 1. A new version of our blood vessel segmentation method based on fully connected CRFs learned with SOSVMs. [[paper]](https://lirias.kuleuven.be/bitstream/123456789/531621/3/OrlandoTBME2016.pdf) [[original implementation]](https://github.com/ignaciorlando/fundus-vessel-segmentation-tbme)
 2. A red lesion detection method based on using CNN's and hand crafted features in combination with random forest.
 3. Code for preparing data from [DIARETDB1](http://www.it.lut.fi/project/imageret/diaretdb1/), [ROC](http://webeye.ophth.uiowa.edu/ROC/), [e-ophtha](http://www.adcis.net/en/Download-Third-Party/E-Ophtha.html) and [MESSIDOR](http://www.adcis.net/en/Download-Third-Party/Messidor.html) for our experiments.
-4. FROC curve computation.
+4. Code for FROC curve computation.
+5. A light CNN architecture that can be trained from small data sets using a class balanced softmax loss.
+6. Code for t-SNE representation of different features.
 
 ## License
 Our code is released under the MIT Licence (refer to the LICENSE file for details).
@@ -20,7 +24,7 @@ Our code is released under the MIT Licence (refer to the LICENSE file for detail
 ## Citing
 Our paper is still under review. Please do not use this repository in your research until we release a valid citation to include.
 
-If you use our segmentation method, please cite the following papers:
+If you use our vessel segmentation method, please cite the following papers:
 
 ```bibtex
 @article{orlando2016discriminatively,
@@ -85,38 +89,34 @@ Additionally, if you use Soares *et al.* features or Azzopardi *et al.* features
 
 Due to the random nature of some parts of our pipeline (splits into training and validation, dropouts in the CNN, etc.) it might happen that final results are not exactly the same than the one we report. However, you can download our pretrained models from here. In that case, results should be the same.
 
-#### Red lesion detection on DIARETDB1 test set (using Seoud et al., 2016 definition of red lesions)
 > **Pre-trained models**
-> *CNN (from DIARETDB1 training set using cross-entropy loss)* [Download](https://www.dropbox.com/s/9jws6lfevxrj0yf/cnn-from-scratch-diaretdb1-train.rar?dl=0)
-> *Random Forest classifier using hand crafted features* [Download](https://www.dropbox.com/s/dv4lurrgz8yii42/hand-crafted-diaretdb1-train.rar?dl=0)
-> *Random Forest classifier using both CNN and hand crafted features* [Download](https://www.dropbox.com/s/2jemrwigh2n1csn/combined-diaretdb1-train.rar?dl=0)
+> [Download](https://www.dropbox.com/s/wxohmajmo9cxbc1/red-lesions-detection-model.rar?dl=0)
+
+#### Red lesion detection on DIARETDB1 test set (using Seoud et al., 2016 definition of red lesions)
+
 > **Pre-computed data**
 > DIARETDB1 training set
-> *Vessel segmentations* [Download](https://www.dropbox.com/s/2uowcj9b0y3lrel/diaretdb1-train-segmentations.rar?dl=0)
-> *Red lesion candidates* [Download](https://www.dropbox.com/s/vvsm74srntxhi8e/diaretdb1-train-red-lesions_candidates.rar?dl=0)
+> *Vessel segmentations* [Download](https://www.dropbox.com/s/gg876xahbil4d22/diaretdb1-train-vessel-segmentations.rar?dl=0)
+> *Red lesion candidates* [Download](https://www.dropbox.com/s/a9zb11al2gu9azk/diaretdb1-train-red-lesions_candidates.rar?dl=0)
 > DIARETDB1 test set
-> *Vessel segmentations* [Download](https://www.dropbox.com/s/r3qwi9jnu11g345/diaretdb1-test-segmentations.rar?dl=0)
-> *Red lesion candidates* [Download](https://www.dropbox.com/s/511r55ii5vcztxa/diaretdb1-test-red-lesions_candidates.rar?dl=0)
+> *Vessel segmentations* [Download](https://www.dropbox.com/s/wdo0691zrqske3d/diaretdb1-test-segmentations.rar?dl=0)
+> *Red lesion candidates* [Download](https://www.dropbox.com/s/f8jybt7q470nt26/diaretdb1-test-red-lesions_candidates.rar?dl=0)
 
 #### Small red lesion detection on e-ophtha
 
-> **Pre-trained models**
-> *CNN (from DIARETDB1 and ROC training sets, both combined, using class-balanced cross entropy loss due to inbalance in class distribution)* [Download](https://www.dropbox.com/s/y99ol2ok7ri5zol/cnn-from-scratch-diaretdb1-roc-train.rar?dl=0)
-> *Random Forest classifier using hand crafted features* [Download](https://www.dropbox.com/s/srwv36t9yq9drq7/hand-crafted-diaretdb1-roc-train.rar?dl=0)
-> *Random Forest classifier using both CNN and hand crafted features* [Download](https://www.dropbox.com/s/ccwyzibyh14nndo/diaretdb1-roc-train-segmentations.rar?dl=0)
 > **Pre-computed data**
 > DIARETDB1-ROC training set
-> *Vessel segmentations* [Download](https://www.dropbox.com/s/ccwyzibyh14nndo/diaretdb1-roc-train-segmentations.rar?dl=0)
-> *Red lesion candidates* [Download](https://www.dropbox.com/s/k5l5snukq12d6ij/diaretdb1-roc-train-red-lesions_candidates.rar?dl=0)
+> *Vessel segmentations* [Download]()
+> *Red lesion candidates* [Download]()
 > e-ophtha
-> *Vessel segmentations* [Download](https://www.dropbox.com/s/4eg32npqdyf8wz7/e-ophtha-segmentations.rar?dl=0)
-> *Red lesion candidates* [Download](https://www.dropbox.com/s/gvlvd72n4vngpvf/e-ophtha-red-lesions_candidates.rar?dl=0)
+> *Vessel segmentations* [Download]()
+> *Red lesion candidates* [Download]()
 
 #### Red lesion detection on MESSIDOR using our model trained on DIARETDB1
 
 > **Pre-computed data from MESSIDOR**
-> *Vessel segmentations* [Download](https://www.dropbox.com/s/8dca0sgu91vtix5/messidor-segmentations.rar?dl=0)
-> *Red lesion candidates* [Download](https://www.dropbox.com/s/23a8umf7w4z8teb/messidor-red-lesions_candidates.rar?dl=0)
+> *Vessel segmentations* [Download]()
+> *Red lesion candidates* [Download]()
 
 
 ## Download our results
