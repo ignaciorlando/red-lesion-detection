@@ -38,7 +38,7 @@ function our_figure = imshow_red_lesion_prob(I, probability_map, color)
             non_vessel = I .* probability_map;
             alphamask(non_vessel > 0, [1 0 0], current_probabilities, gca);
             
-            on_vessel = imcomplement(segm_aux_2) .* probability_map;
+            on_vessel = imcomplement(I) .* probability_map;
             alphamask(on_vessel > 0, [0 1 0], current_probabilities, gca);
             
         else

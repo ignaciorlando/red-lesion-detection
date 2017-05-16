@@ -1,7 +1,7 @@
 
-I = imread('C:\_dr_tbme\DIARETDB1\train\images\image003.png');
-candidates = imread('C:\_dr_tbme\DIARETDB1\train\red-lesions_candidates\image003.gif') > 0;
-segm = imresize(imread('C:\_dr_tbme\DIARETDB1\train\segmentations\image003_fccrf.png')>0, size(candidates));
+I = imread('C:\_dr_tbme\DIARETDB1\test\images\image002.png');
+candidates = imread('C:\_dr_tbme\DIARETDB1\test\red-lesions_candidates\image002.gif') > 0;
+segm = imresize(imread('C:\_dr_tbme\DIARETDB1\test\segmentations\image002_fccrf.png')>0, size(candidates));
 
 figure, imshow(I);
 
