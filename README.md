@@ -94,30 +94,34 @@ Due to the random nature of some parts of our pipeline (splits into training and
 
 #### Red lesion detection on DIARETDB1 test set (using Seoud et al., 2016 definition of red lesions)
 
-> **Pre-computed data**
-> DIARETDB1 training set
-> *Vessel segmentations* [Download](https://www.dropbox.com/s/gg876xahbil4d22/diaretdb1-train-vessel-segmentations.rar?dl=0)
-> *Red lesion candidates* [Download](https://www.dropbox.com/s/a9zb11al2gu9azk/diaretdb1-train-red-lesions_candidates.rar?dl=0)
+We provide precomputed data for reproducibility purposes! You can download it from the following links:
 
-> DIARETDB1 test set
-> *Vessel segmentations* [Download](https://www.dropbox.com/s/wdo0691zrqske3d/diaretdb1-test-segmentations.rar?dl=0)
-> *Red lesion candidates* [Download](https://www.dropbox.com/s/f8jybt7q470nt26/diaretdb1-test-red-lesions_candidates.rar?dl=0)
+* ***DIARETDB1 training set***
+  * *Vessel segmentations* [Download](https://www.dropbox.com/s/gg876xahbil4d22/diaretdb1-train-vessel-segmentations.rar?dl=0)
+  * *Red lesion candidates* [Download](https://www.dropbox.com/s/a9zb11al2gu9azk/diaretdb1-train-red-lesions_candidates.rar?dl=0)
+
+* ***DIARETDB1 test set***
+  * *Vessel segmentations* [Download](https://www.dropbox.com/s/wdo0691zrqske3d/diaretdb1-test-segmentations.rar?dl=0)
+  * *Red lesion candidates* [Download](https://www.dropbox.com/s/f8jybt7q470nt26/diaretdb1-test-red-lesions_candidates.rar?dl=0)
 
 #### Small red lesion detection on e-ophtha
 
-> **Pre-computed data.**
-> ***DIARETDB1-ROC training set.***
-> *Vessel segmentations* [Download](https://www.dropbox.com/s/5vensjtzknzg9t3/diaretbd1-roch-vessel-segmentations.rar?dl=0)
-> *Red lesion candidates* [Download](https://www.dropbox.com/s/a9sbgk1ofr2o5df/diaretdb1-roch-red-lesions_candidates.rar?dl=0)
-> ***e-ophtha.***
-> *Vessel segmentations* [Download](https://www.dropbox.com/s/1rwfyju69g4aajp/e-ophtha-vessel-segmentations.rar?dl=0)
-> *Red lesion candidates* [Download](https://www.dropbox.com/s/do7wz6kmxq6efab/e-ophtha-red-lesions_candidates.rar?dl=0)
+We provide precomputed data for reproducibility purposes! You can download it from the following links:
+
+* ***DIARETDB1-ROC training set.***
+  * *Vessel segmentations* [Download](https://www.dropbox.com/s/5vensjtzknzg9t3/diaretbd1-roch-vessel-segmentations.rar?dl=0)
+  * *Red lesion candidates* [Download](https://www.dropbox.com/s/a9sbgk1ofr2o5df/diaretdb1-roch-red-lesions_candidates.rar?dl=0)
+* ***e-ophtha.***
+  * *Vessel segmentations* [Download](https://www.dropbox.com/s/1rwfyju69g4aajp/e-ophtha-vessel-segmentations.rar?dl=0)
+  * *Red lesion candidates* [Download](https://www.dropbox.com/s/do7wz6kmxq6efab/e-ophtha-red-lesions_candidates.rar?dl=0)
 
 #### Red lesion detection on MESSIDOR using our model trained on DIARETDB1
 
-> **Pre-computed data from MESSIDOR.**
-> *Vessel segmentations* [Download](https://www.dropbox.com/s/jb8f7f46m9axfqa/messidor-vessel-segmentations.rar?dl=0)
-> *Red lesion candidates* [Download](https://www.dropbox.com/s/i5qa67evasutvse/messidor-red-lesions_candidates.rar?dl=0)
+We provide precomputed data for reproducibility purposes! You can download it from the following links:
+
+* ***MESSIDOR***
+  * *Vessel segmentations* [Download](https://www.dropbox.com/s/jb8f7f46m9axfqa/messidor-vessel-segmentations.rar?dl=0)
+  * *Red lesion candidates* [Download](https://www.dropbox.com/s/i5qa67evasutvse/messidor-red-lesions_candidates.rar?dl=0)
 
 
 ## Download our results
