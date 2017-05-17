@@ -106,22 +106,22 @@ Due to the random nature of some parts of our pipeline (splits into training and
 
 > **Pre-computed data**
 > DIARETDB1-ROC training set
-> *Vessel segmentations* [Download]()
-> *Red lesion candidates* [Download]()
+> *Vessel segmentations* [Download](https://www.dropbox.com/s/5vensjtzknzg9t3/diaretbd1-roch-vessel-segmentations.rar?dl=0)
+> *Red lesion candidates* [Download](https://www.dropbox.com/s/a9sbgk1ofr2o5df/diaretdb1-roch-red-lesions_candidates.rar?dl=0)
 > e-ophtha
-> *Vessel segmentations* [Download]()
-> *Red lesion candidates* [Download]()
+> *Vessel segmentations* [Download](https://www.dropbox.com/s/1rwfyju69g4aajp/e-ophtha-vessel-segmentations.rar?dl=0)
+> *Red lesion candidates* [Download](https://www.dropbox.com/s/do7wz6kmxq6efab/e-ophtha-red-lesions_candidates.rar?dl=0)
 
 #### Red lesion detection on MESSIDOR using our model trained on DIARETDB1
 
 > **Pre-computed data from MESSIDOR**
-> *Vessel segmentations* [Download]()
-> *Red lesion candidates* [Download]()
+> *Vessel segmentations* [Download](https://www.dropbox.com/s/jb8f7f46m9axfqa/messidor-vessel-segmentations.rar?dl=0)
+> *Red lesion candidates* [Download](https://www.dropbox.com/s/i5qa67evasutvse/messidor-red-lesions_candidates.rar?dl=0)
 
 
 ## Download our results
 
-If you are in a rush and you don't want to run all our code but comparing your results with ours instead, you can download from here our segmentations on [DIARETDB1 test set](https://www.dropbox.com/s/p8m72cull37x9u8/DIARETDB1_test.rar?dl=0), [e-ophtha](https://www.dropbox.com/s/r0k67g1djg6f2fo/e-ophtha.rar?dl=0) and [MESSIDOR](https://www.dropbox.com/s/7ck7eh3ke6987p0/MESSIDOR.rar?dl=0).
+If you are in a rush and you don't want to run all our code but comparing your results with ours instead, you can download from here our segmentations on [DIARETDB1 test set](https://www.dropbox.com/s/e1ewlyyopqc1e39/diaretdb1-test-red-lesions-segmentations.rar?dl=0), [e-ophtha](https://www.dropbox.com/s/abpq3ebff64l3pj/e-ophtha-red-lesions-segmentations.rar?dl=0) and [MESSIDOR](https://www.dropbox.com/s/pp2x2vm7jww0s5r/messidor-red-lesions-segmentations.rar?dl=0).
 
 We provide:
 
