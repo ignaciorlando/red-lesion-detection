@@ -96,10 +96,15 @@ Due to the random nature of some parts of our pipeline (splits into training and
 
 > **Pre-computed data**
 > DIARETDB1 training set
+
 > *Vessel segmentations* [Download](https://www.dropbox.com/s/gg876xahbil4d22/diaretdb1-train-vessel-segmentations.rar?dl=0)
+
 > *Red lesion candidates* [Download](https://www.dropbox.com/s/a9zb11al2gu9azk/diaretdb1-train-red-lesions_candidates.rar?dl=0)
+
 > DIARETDB1 test set
+
 > *Vessel segmentations* [Download](https://www.dropbox.com/s/wdo0691zrqske3d/diaretdb1-test-segmentations.rar?dl=0)
+
 > *Red lesion candidates* [Download](https://www.dropbox.com/s/f8jybt7q470nt26/diaretdb1-test-red-lesions_candidates.rar?dl=0)
 
 #### Small red lesion detection on e-ophtha
