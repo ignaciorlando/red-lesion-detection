@@ -146,11 +146,7 @@ function [imdb] = get_red_lesion_data_to_classify(dataset_to_extract_data, featu
                         % remove training data mean to all the images
                         current_windows = bsxfun(@minus, single(current_windows), detector.net.meta.trainOpts.dataMean);
                         % retrieve features
-                        try
-                        res = vl_simplenn(detector.net, current_windows) ;
-                        catch
-                            disp('A');
-                        end
+                        res = vl_simplenn(detector.net, current_windows,[],[], 'mode', 'test') ;
                         current_features = squeeze(gather(res(end).x))';
                     case 'hand-crafted'
                         % open segmentation
