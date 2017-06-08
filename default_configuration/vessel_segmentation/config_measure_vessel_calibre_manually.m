@@ -14,7 +14,7 @@ dataset_name = fullfile('DIARETDB1', 'train');
 % dataset_name = fullfile('MESSIDOR');
 
 % Path where the images are
-root = 'data';
+root = 'C:\_diabetic_retinopathy_testing_software';
 
 % Number of images to measure (5 is fine)
 numImages = 5;

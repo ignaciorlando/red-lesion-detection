@@ -8,11 +8,12 @@
 % Data set that is going to be used to extract the training set
 dataset_name = fullfile('DIARETDB1', 'train');
 %dataset_name = fullfile('DIARETDB1-ROCh', 'train');
+%dataset_name = 'e-ophtha-training';
 
 % Path where the data set is saved
-root_path = 'data';
+root_path = 'C:\_dr_tbme';
 % Path where the training set will be saved
-data_path = 'data';
+data_path = 'C:\_dr_tbme';
 
 % A boolean flag indicating if the patch extraction method has to output
 % also figures showing where the patches are located on each image.

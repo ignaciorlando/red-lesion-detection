@@ -6,17 +6,18 @@
 % -------------------------------------------------------------------------
 
 % Name of the data set for training
-%datasetName = fullfile('DIARETDB1', 'train');
-datasetName = fullfile('DIARETDB1-ROCh', 'train');
+datasetName = fullfile('DIARETDB1', 'train');
+%datasetName = fullfile('DIARETDB1-ROCh', 'train');
+%datasetName = 'e-ophtha-training';
 
 % Input folder
-inputDir = 'data';
+inputDir = 'C:\_dr_tbme';
 
 % Type of lesion
 type_of_lesion = 'red-lesions';
 
 % Folder to export epoch statistics
-expDir = strcat('data/my_temp_folder/dr-screening/data-', type_of_lesion);
+expDir = strcat('C:\my_temp_folder\dr-screening\data-', type_of_lesion);
 
 % Indicate if the model has to be saved
 %save_model = false;
@@ -49,7 +50,7 @@ switch objective
         % epochs (for both convergence and learning rate decay)
         learningOpts.from_scratch.N = 10;
         % dropout probability
-        learningOpts.from_scratch.p_dropout = 0.05;
+        learningOpts.from_scratch.p_dropout = 0.01;
         % size of the fully connected layer
         learningOpts.from_scratch.fc_layer = 128;
         % minimum number of epochs

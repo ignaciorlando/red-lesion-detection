@@ -10,7 +10,7 @@
 datasetName = fullfile('DIARETDB1-ROCh', 'train');
 
 % Path where the data is stored
-root_path = 'data';
+root_path = 'C:\_diabetic_retinopathy';
 
 % Type of lesion
 type_of_lesion = 'red-lesions';

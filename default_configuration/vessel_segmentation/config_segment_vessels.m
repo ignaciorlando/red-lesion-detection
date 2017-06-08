@@ -26,11 +26,11 @@ scale_values = [ ...
 
 
 % folder where images, masks and stuff are stored
-image_folder = 'data';
+image_folder = 'C:\_diabetic_retinopathy';
 
 % folder where vessel segmentations will be saved
-output_segmentations_folder = 'data';
+output_segmentations_folder = 'C:\_diabetic_retinopathy';
 
 % The segmentation model has to be located in this folder
-modelLocation = 'data/segmentation-model';
+modelLocation = 'C:\_diabetic_retinopathy\segmentation-model';
 

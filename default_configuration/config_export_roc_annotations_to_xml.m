@@ -21,4 +21,4 @@ type_of_lesion = 'ma';
 
 % Root path from the test data (test_data_path contains features,
 % test_images_path contains images)
-test_data_path = 'data';
+test_data_path = 'C:\Users\USUARIO\Dropbox\RetinalImaging\Writing\drscreening2016paper\data';
