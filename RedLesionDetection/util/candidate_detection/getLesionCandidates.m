@@ -23,7 +23,7 @@ function [ candidates ] = getLesionCandidates(I, fov_mask, L0, step, L, K, px)
     % GET A SET OF INITIAL GUESSES
     % ---------------------------------------------------------------------
     initial_guesses = zeros(size(I,1), size(I,2), length(scales));
-    parfor i = 1 : length(scales)
+    for i = 1 : length(scales)
         [initial_guesses(:,:,i)] = getInitialGuessesOfLesions(I, fov_mask, scales(i), K);
     end
     candidates = max(initial_guesses, [], 3) > 0;

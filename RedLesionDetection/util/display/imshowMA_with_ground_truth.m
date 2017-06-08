@@ -23,7 +23,7 @@ function ma_color = imshowMA_with_ground_truth(I, ma_ground_truth, ma_segmentati
             % positive
             if any(ismember(properties(i).PixelIdxList, properties_gt(j).PixelIdxList))
                 ma_ground_truth(properties_gt(j).PixelIdxList) = false;
-                plot(xunit, yunit, '-g', 'LineWidth', 2);
+                plot(xunit, yunit, '-g', 'LineWidth', 1);
                 found = true;
                 break
             end
@@ -32,7 +32,7 @@ function ma_color = imshowMA_with_ground_truth(I, ma_ground_truth, ma_segmentati
         % If it does not overlap with a ground truth lesion, it is a false
         % positive
         if ~found
-            plot(xunit, yunit, '-y', 'LineWidth', 2);
+            plot(xunit, yunit, '-y', 'LineWidth', 1);
         end
             
     end
@@ -50,7 +50,7 @@ function ma_color = imshowMA_with_ground_truth(I, ma_ground_truth, ma_segmentati
         xunit = r * cos(th) + x;
         yunit = r * sin(th) + y;
         
-        plot(xunit, yunit, '-r', 'LineWidth', 2);
+        plot(xunit, yunit, '-r', 'LineWidth', 1);
             
     end
     
