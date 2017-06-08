@@ -1,6 +1,6 @@
 ![Graphical abstract of our method](https://raw.githubusercontent.com/ignaciorlando/red-lesion-detection/master/GRAPHICAL_ABSTRACT.png)
 
-# Learning to Detect Red Lesions using Small Training Sets: An Ensemble Approach based on Deep Learned and Hand Crafted Features
+# Learning to Detect Red Lesions in Fundus Photographs: An Ensemble Approach based on Deep Learning
 
 Created by José Ignacio Orlando at Pladema Institute (Facultad de Ciencias Exactas, UNCPBA, Tandil, Argentina) and CONICET (Consejo Nacional de Investigaciones Científicas y Técnicas, Argentina), under the supervision of [Dr. Matthew B. Blaschko](http://homes.esat.kuleuven.be/~mblaschk/) (ESAT-Visics, KU Leuven, Leuven, Belgium).
 
