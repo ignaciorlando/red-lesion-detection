@@ -22,7 +22,15 @@ The repository includes:
 Our code is released under the MIT Licence (refer to the LICENSE file for details).
 
 ## Citing
-Our paper is still under review. Please do not use this repository in your research until we release a valid citation to include.
+Our paper is still under review. However, you can cite our [arXiv article](https://arxiv.org/abs/1706.03008) in the meantime:
+```bibtex
+@article{orlando2017learning,
+title={Learning to Detect Red Lesions in Fundus Photographs: An Ensemble Approach based on Deep Learning},
+author={Orlando, Jos\'e Ignacio and Prokofyeva, Elena and del Fresno, Mariana and Blaschko, Matthew B},
+journal={arXiv preprint arXiv:1706.03008},
+year={2017}
+}
+```
 
 If you use our vessel segmentation method, please cite the following papers:
 
