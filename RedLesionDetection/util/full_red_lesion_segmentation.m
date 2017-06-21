@@ -1,5 +1,5 @@
 
-function [red_lesion_segmentation, score_map] = full_red_lesion_segmentation(I, mask, scales, K, px, cnn_for_feature_extraction, vessel_segmentation, detector)
+function [red_lesion_segmentation, score_map] = full_red_lesion_segmentation(I, mask, L0, step, L, K, px, cnn_for_feature_extraction, vessel_segmentation, detector)
 
     % if the image is bigger than images in MESSIDOR, it would be nice to
     % downscale it
@@ -12,7 +12,7 @@ function [red_lesion_segmentation, score_map] = full_red_lesion_segmentation(I, 
     end
 
     % generate candidates
-    red_lesion_candidates = getLesionCandidates(I, mask>0, scales, K, px);
+    red_lesion_candidates = getLesionCandidates(I, mask>0, L0, step, L, K, px);
 
     % extract CNN features
     % get CNN training data
