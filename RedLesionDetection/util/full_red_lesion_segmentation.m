@@ -16,7 +16,7 @@ function [red_lesion_segmentation, score_map] = full_red_lesion_segmentation(I, 
 
     % extract CNN features
     % get CNN training data
-    [current_windows, ~, current_candidates_coordinates] = get_cnn_training_data(I, red_lesion_candidates, [], false, mask);
+    [current_windows, ~, current_candidates_coordinates] = get_cnn_training_data(I, red_lesion_candidates, [], false, mask>0);
     % remove training data mean to all the images
     current_windows = bsxfun(@minus, single(current_windows), cnn_for_feature_extraction.net.meta.trainOpts.dataMean);
     % retrieve features
@@ -24,7 +24,7 @@ function [red_lesion_segmentation, score_map] = full_red_lesion_segmentation(I, 
     cnn_features = squeeze(gather(res(end).x))';
 
     % extract hand crafted features
-    [hand_crafted_features, ~] = hand_crafted_features_extraction(red_lesion_candidates, I, vessel_segmentation, mask);
+    [hand_crafted_features, ~] = hand_crafted_features_extraction(red_lesion_candidates, I, vessel_segmentation, mask>0);
 
     % segment red lesions
     [red_lesion_segmentation, score_map, ~] = segmentRedLesions(detector, I, double(cat(2, cnn_features, hand_crafted_features)), current_candidates_coordinates);
