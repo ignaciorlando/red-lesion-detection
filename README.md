@@ -1,6 +1,6 @@
 ![Graphical abstract of our method](https://raw.githubusercontent.com/ignaciorlando/red-lesion-detection/master/GRAPHICAL_ABSTRACT.png)
 
-# Learning to Detect Red Lesions in Fundus Photographs: An Ensemble Approach based on Deep Learning
+# An Ensemble Deep Learning Based Approach for Red Lesion Detection in Fundus Images
 
 Created by José Ignacio Orlando at Pladema Institute (Facultad de Ciencias Exactas, UNCPBA, Tandil, Argentina) and CONICET (Consejo Nacional de Investigaciones Científicas y Técnicas, Argentina), under the supervision of [Dr. Matthew B. Blaschko](http://homes.esat.kuleuven.be/~mblaschk/) (ESAT-Visics, KU Leuven, Leuven, Belgium).
 
@@ -12,7 +12,7 @@ A preprint of the paper explaining our methodology will be released soon.
 The repository includes:
 
 1. A new version of our blood vessel segmentation method based on fully connected CRFs learned with SOSVMs. [[paper]](https://lirias.kuleuven.be/bitstream/123456789/531621/3/OrlandoTBME2016.pdf) [[original implementation]](https://github.com/ignaciorlando/fundus-vessel-segmentation-tbme)
-2. A red lesion detection method based on using CNN's and hand crafted features in combination with random forest.
+2. A red lesion detection method based on using CNN's and hand crafted features in combination with random forest. [[paper]](https://arxiv.org/pdf/1706.03008.pdf)
 3. Code for preparing data from [DIARETDB1](http://www.it.lut.fi/project/imageret/diaretdb1/), [ROC](http://webeye.ophth.uiowa.edu/ROC/), [e-ophtha](http://www.adcis.net/en/Download-Third-Party/E-Ophtha.html) and [MESSIDOR](http://www.adcis.net/en/Download-Third-Party/Messidor.html) for our experiments.
 4. Code for FROC curve computation.
 5. A light CNN architecture that can be trained from small data sets using a class balanced softmax loss.
@@ -22,12 +22,13 @@ The repository includes:
 Our code is released under the MIT Licence (refer to the LICENSE file for details).
 
 ## Citing
-Our paper is still under review. However, you can cite our [arXiv article](https://arxiv.org/abs/1706.03008) in the meantime:
+If you use our method, please cite the following paper:
+
 ```bibtex
-@article{orlando2017learning,
-title={Learning to Detect Red Lesions in Fundus Photographs: An Ensemble Approach based on Deep Learning},
+@article{orlando2017ensemble,
+title={An Ensemble Deep Learning Based Approach for Red Lesion Detection in Fundus Images},
 author={Orlando, Jos\'e Ignacio and Prokofyeva, Elena and del Fresno, Mariana and Blaschko, Matthew B},
-journal={arXiv preprint arXiv:1706.03008},
+journal={Computer Methods and Programs in Biomedicine},
 year={2017}
 }
 ```
