@@ -12,7 +12,9 @@ root_path = fullfile(root_path, datasetName);
 % prepare dataset path
 dataset_path = fullfile(data_path, datasetName);
 % prepare output path
-output_path = fullfile(dataset_path, strcat(type_of_lesion, '_candidates'));
+if (exist('output_path', 'var') == 0)
+    output_path = fullfile(dataset_path, strcat(type_of_lesion, '_candidates'));
+end
 if (exist(output_path, 'dir') == 0)
     mkdir(output_path);
 end

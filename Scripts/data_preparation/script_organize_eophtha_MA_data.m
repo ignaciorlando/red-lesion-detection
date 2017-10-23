@@ -13,8 +13,8 @@ healthy_set_root = fullfile(root_path, 'e_ophtha_MA', 'healthy');
 ma_set_root = fullfile(root_path, 'e_ophtha_MA', 'MA');
 
 % prepare paths for the outputs
-ma_labels_output = fullfile(output_folder, 'red-lesions');
-images_output = fullfile(output_folder, 'images');
+ma_labels_output = fullfile(output_folder, 'e-ophtha', 'red-lesions');
+images_output = fullfile(output_folder, 'e-ophtha', 'images');
 mkdir(ma_labels_output);
 mkdir(images_output);
 
@@ -135,13 +135,13 @@ for i = 1 : length(new_images_filenames)
     end
     
 end 
-mkdir(fullfile(output_folder, 'labels'));
-save(fullfile(output_folder, 'labels', 'labels.mat'), 'labels');
+mkdir(fullfile(output_folder, 'e-ophtha', 'labels'));
+save(fullfile(output_folder, 'e-ophtha', 'labels', 'labels.mat'), 'labels');
 
 %%
 
 % now, generate fov masks
-root = output_folder;
+root = fullfile(output_folder, 'e-ophtha');
 threshold = 0.15;
 GenerateFOVMasks;
 
@@ -154,18 +154,18 @@ if perform_cropping
     fprintf('Cropping data set...\n');
     % - path where the images to crop are
     sourcePaths = { ...
-        fullfile(output_folder, 'images'), ...
-        fullfile(output_folder, 'red-lesions'), ...
-        fullfile(output_folder, 'masks') ...
+        fullfile(output_folder, 'e-ophtha','images'), ...
+        fullfile(output_folder, 'e-ophtha','red-lesions'), ...
+        fullfile(output_folder, 'e-ophtha','masks') ...
     };
     % - paths where the images to be cropped will be saved
     outputPaths = { ...
-        fullfile(output_folder, 'images'), ...
-        fullfile(output_folder, 'red-lesions'), ...
-        fullfile(output_folder, 'masks') ...
+        fullfile(output_folder, 'e-ophtha','images'), ...
+        fullfile(output_folder, 'e-ophtha','red-lesions'), ...
+        fullfile(output_folder, 'e-ophtha','masks') ...
     };
     % - masks to be used to crop the images
-    maskPaths = fullfile(output_folder, 'masks');
+    maskPaths = fullfile(output_folder, 'e-ophtha','masks');
     % crop!!
     script_cropFOVSet;
     
