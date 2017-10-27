@@ -23,7 +23,7 @@ detector.training_type = 'cnn-from-scratch';
 if (save_model)
     [datasetTag] = generate_dataset_tag(datasetName);
     
-    current_folder = fullfile(inputDir, strcat('red-lesions-detection-model'), datasetTag, detector.method);
+    current_folder = fullfile(expDir, strcat('red-lesions-detection-model'), datasetTag, detector.method);
     mkdir(current_folder);
     
     save(fullfile(current_folder, strcat(detector.net.meta.string_parameters, '.mat')), 'detector');

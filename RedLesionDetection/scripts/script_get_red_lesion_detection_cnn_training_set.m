@@ -11,40 +11,28 @@ config_get_red_lesion_detection_training_set;
 % Announce the name of the data set
 fprintf(strcat('Dataset: ', dataset_name, '\n'));
 
+% prepare image and ground truth paths
+image_path = fullfile(root_path, dataset_name, 'images');
+fov_masks_path = fullfile(root_path, dataset_name, 'masks');
+labels_path = fullfile(root_path, dataset_name, type_of_lesion);
+% prepare data path and MA candidate path 
+candidate_path = fullfile(data_path, dataset_name, strcat(type_of_lesion, '_candidates'));
+red_lesion_data_path = fullfile(data_path, dataset_name, strcat(type_of_lesion, '_candidates_data'));   
+
 % Extract patches for each of the red lesion candidates
-original_imdb = get_red_lesion_data_to_classify(dataset_name, 'cnn-from-scratch', type_of_lesion, true, data_path, root_path, '');
+original_imdb = get_red_lesion_data_to_classify(dataset_name, ...           % data set name
+                                                image_path, ...             % image path
+                                                fov_masks_path, ...         % FOV mask path
+                                                labels_path, ...            % labels path
+                                                candidate_path, ...         % candidates path
+                                                red_lesion_data_path, ...   % path to save/load the data
+                                                'cnn-from-scratch', ...     % type of feature
+                                                type_of_lesion, ...         % type of lesion
+                                                true, ...                   % is training?
+                                                '');                        % cnn filename
 
-% Initialize a matrix to store the augmented data set
-number_of_images_in_the_augmented_set = size(original_imdb.images.data,4) * 2 * length(augmentation_angles);
-
-% Initialize the training data structure
-imdb.images.data = zeros(32, 32, 3, number_of_images_in_the_augmented_set);
-imdb.images.labels = zeros(number_of_images_in_the_augmented_set, 1);
-imdb.images.image_id = zeros(number_of_images_in_the_augmented_set, 1);
-imdb.images.set = zeros(number_of_images_in_the_augmented_set, 1);
-imdb.images.candidates_pxs = cell(length(original_imdb.images.candidates_pxs) * 2 * length(augmentation_angles), 1);
-
-% For each patch
-iterator = 1;
-for i = 1 : size(original_imdb.images.data, 4)
-    
-    % Announce the number of patch being processed
-    fprintf('Augmenting patch %i/%i\n', i, size(original_imdb.images.data, 4));
-    % Retrieve i-th window
-    current_window = original_imdb.images.data(:,:,:,i);
-    % For each augmentation angle
-    for angle = 1 : length(augmentation_angles)
-        % Rotate window using current augmentation angle
-        imdb.images.data(:,:,:,iterator) = imrotate(current_window, augmentation_angles(angle));
-        imdb.images.labels(iterator) = original_imdb.images.labels(i);
-        iterator = iterator + 1;
-        % Flip horizontally the rotated window
-        imdb.images.data(:,:,:,iterator) = fliplr(imdb.images.data(:,:,:,iterator-1));
-        imdb.images.labels(iterator) = original_imdb.images.labels(i);
-        iterator = iterator + 1;
-    end
-
-end
+% Perform data augmentation
+[imdb] = augment_dataset(original_imdb, augmentation_angles);
 
 % Save the huuuuuuge matrix on a .MAT file
 red_lesion_data_path = fullfile(data_path, dataset_name, strcat(type_of_lesion, '_candidates_data'));

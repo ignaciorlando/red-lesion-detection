@@ -1,13 +1,24 @@
 
-function [imdb] = get_red_lesion_data_to_classify(dataset_to_extract_data, features_source, type_of_lesion, is_training, data_path, root_path, cnn_filename)
+%function [imdb] = get_red_lesion_data_to_classify(dataset_to_extract_data, features_source, type_of_lesion, is_training, data_path, root_path, cnn_filename)
+
+function [imdb] = get_red_lesion_data_to_classify(dataset_to_extract_data, ...
+                                                  image_path, ...
+                                                  fov_masks_path, ...
+                                                  labels_path, ...
+                                                  candidate_path, ...
+                                                  red_lesion_data_path, ...
+                                                  features_source, ...
+                                                  type_of_lesion, ...
+                                                  is_training, ...
+                                                  cnn_filename)
 
     % prepare image and ground truth paths
-    image_path = fullfile(root_path, dataset_to_extract_data, 'images');
-    masks_path = fullfile(root_path, dataset_to_extract_data, 'masks');
-    gt_path = fullfile(root_path, dataset_to_extract_data, type_of_lesion);
+    %image_path = fullfile(root_path, dataset_to_extract_data, 'images');
+    %masks_path = fullfile(root_path, dataset_to_extract_data, 'masks');
+    %gt_path = fullfile(root_path, dataset_to_extract_data, type_of_lesion);
     % prepare data path and MA candidate path 
-    ma_candidate_path = fullfile(data_path, dataset_to_extract_data, strcat(type_of_lesion, '_candidates'));
-    red_lesion_data_path = fullfile(data_path, dataset_to_extract_data, strcat(type_of_lesion, '_candidates_data'));   
+    %ma_candidate_path = fullfile(data_path, dataset_to_extract_data, strcat(type_of_lesion, '_candidates'));
+    %red_lesion_data_path = fullfile(data_path, dataset_to_extract_data, strcat(type_of_lesion, '_candidates_data'));   
     mkdir(red_lesion_data_path);
     
     % depending on the features source we will use different functions
@@ -68,7 +79,7 @@ function [imdb] = get_red_lesion_data_to_classify(dataset_to_extract_data, featu
         imdb_hand_crafted = S.imdb_hand_crafted;
         
         if (is_training)
-            % cat all the features within the same structures, and voilà
+            % cat all the features within the same structures, and voilï¿½
             imdb.images.candidates_pxs = imdb_cnn.imdb.images.candidates_pxs;
             imdb.images.image_id = imdb_cnn.imdb.images.image_id;
             imdb.images.labels = imdb_cnn.imdb.images.labels;
@@ -98,11 +109,11 @@ function [imdb] = get_red_lesion_data_to_classify(dataset_to_extract_data, featu
             % get image filenames
             image_filenames = getMultipleImagesFileNames(image_path);
             % get masks filenames
-            masks_filenames = getMultipleImagesFileNames(masks_path);
+            masks_filenames = getMultipleImagesFileNames(fov_masks_path);
             % get ma candidate filenames
-            ma_candidate_filenames = getMultipleImagesFileNames(ma_candidate_path);
+            ma_candidate_filenames = getMultipleImagesFileNames(candidate_path);
             % get labels filename
-            gt_filenames = getMultipleImagesFileNames(gt_path);
+            gt_filenames = getMultipleImagesFileNames(labels_path);
             if strcmp(features_source, 'hand-crafted')
                 % get segmentations filenames
                 segmentations_filenames = getMultipleImagesFileNames(segmentations_path);
@@ -128,14 +139,14 @@ function [imdb] = get_red_lesion_data_to_classify(dataset_to_extract_data, featu
                 % open image
                 I = imread(fullfile(image_path, image_filenames{i}));
                 % open mask
-                mask = imread(fullfile(masks_path, masks_filenames{i})) > 0;
+                mask = imread(fullfile(fov_masks_path, masks_filenames{i})) > 0;
                 % open ma_candidate
-                ma_candidate = imread(fullfile(ma_candidate_path, ma_candidate_filenames{i}));
+                ma_candidate = imread(fullfile(candidate_path, ma_candidate_filenames{i}));
                 % open ground truth label
                 if isempty(gt_filenames)
                     gt = [];
                 else
-                    gt = imread(fullfile(gt_path, gt_filenames{i}));
+                    gt = imread(fullfile(labels_path, gt_filenames{i}));
                 end
 
 
