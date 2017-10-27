@@ -35,6 +35,5 @@ original_imdb = get_red_lesion_data_to_classify(dataset_name, ...           % da
 [imdb] = augment_dataset(original_imdb, augmentation_angles);
 
 % Save the huuuuuuge matrix on a .MAT file
-red_lesion_data_path = fullfile(data_path, dataset_name, strcat(type_of_lesion, '_candidates_data'));
 mkdir(red_lesion_data_path)
 save(fullfile(red_lesion_data_path, strcat('imdb-red-lesions-windows-', type_of_lesion, '-augmented.mat')), 'imdb', '-v7.3');

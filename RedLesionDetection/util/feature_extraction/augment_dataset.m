@@ -16,7 +16,7 @@ function [imdb] = augment_dataset(original_imdb, augmentation_angles)
     for i = 1 : size(original_imdb.images.data, 4)
 
         % Announce the number of patch being processed
-        fprintf('Augmenting patch %i/%i\n', i, size(original_imdb.images.data, 4));
+        %fprintf('Augmenting patch %i/%i\n', i, size(original_imdb.images.data, 4));
         % Retrieve i-th window
         current_window = original_imdb.images.data(:,:,:,i);
         % For each augmentation angle
