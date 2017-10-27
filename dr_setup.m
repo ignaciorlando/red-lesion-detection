@@ -35,6 +35,9 @@ if exist(fullfile(root,'external','RF_Class_C'), 'dir')==0
     warning('We could not find RF_Class_C. Please, download the package from here: https://github.com/PetterS/hep-2/tree/master/randomforest-matlab/RF_Class_C');
 else
     addpath(genpath(fullfile(root,'external','RF_Class_C'))) ; % code for random forests
+    cd external/RF_Class_C
+    compile_random_forest;
+    cd(root)
 end
 
 % if VLFeat does not exist, show a warning message

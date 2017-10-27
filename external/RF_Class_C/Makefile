@@ -14,44 +14,37 @@
 
 #source directory
 SRC=src/
+SRC_FILES=$(SRC)/classRF.cpp $(SRC)/classTree.cpp $(SRC)/rfutils.cpp $(SRC)/cokus.cpp
 
 #temporary .o output directory
 BUILD=tempbuild/
 
 CC=g++
 FORTRAN=gfortran # or g77 whichever is present
-CFLAGS= -fpic -O2 -funroll-loops -msse3#-g -Wall
-FFLAGS=-O2 -fpic #-g
+CFLAGS= -fpic -O2 -funroll-loops -march=native  -Wall
+FFLAGS=-O2 -fpic -march=native#-g -Wall
 LDFORTRAN=#-gfortran
-MEXFLAGS=-g
-all:	clean classTree cokus rfsub rfutils classRF twonorm mex
-#all:	 regTree regrf rf rfsub rfutils classTree shared mex-setup
+MEXFLAGS=-O
 
-mex:	clean classTree  cokus rfsub rfutils mex_classRF
+all:	clean rfsub mex twonorm
 
-twonorm:  clean cokus classTree rfsub rfutils
+twonorm:  clean rfsub
 	echo 'Generating twonorm executable'
-	$(CC) $(CFLAGS) -c $(SRC)classRF.cpp -o $(BUILD)classRF.o
-	$(CC) $(CFLAGS) $(SRC)twonorm_C_wrapper.cpp $(SRC)classRF.cpp $(BUILD)classTree.o $(BUILD)rfutils.o rfsub.o $(BUILD)cokus.o  -o twonorm_test -lgfortran -lm
+	$(CC) $(CFLAGS) $(SRC)twonorm_C_wrapper.cpp $(SRC_FILES) rfsub.o -o twonorm_test -lgfortran -lm -DmxCalloc=calloc -DmxFree=free
 
-mex_classRF: $(SRC)classRF.cpp  $(SRC)mex_ClassificationRF_train.cpp $(SRC)mex_ClassificationRF_predict.cpp
+mex:  rfsub
 	echo 'Generating Mex'
 #	mex -c $(SRC)classRF.cpp -outdir $(BUILD)classRF.o -DMATLAB $(MEXFLAGS)
-	mex $(SRC)mex_ClassificationRF_train.cpp  $(SRC)classRF.cpp $(BUILD)classTree.o $(BUILD)rfutils.o rfsub.o $(BUILD)cokus.o  -o mexClassRF_train -lgfortran -lm -DMATLAB $(MEXFLAGS)
-	mex $(SRC)mex_ClassificationRF_predict.cpp $(SRC)classRF.cpp $(BUILD)classTree.o $(BUILD)rfutils.o rfsub.o $(BUILD)cokus.o  -o mexClassRF_predict -lgfortran -lm -DMATLAB $(MEXFLAGS)
+	mex $(SRC)mex_ClassificationRF_train.cpp  $(SRC_FILES) rfsub.o -o mexClassRF_train -lgfortran -lm -DMATLAB $(MEXFLAGS) 
+	mex $(SRC)mex_ClassificationRF_predict.cpp $(SRC_FILES) rfsub.o  -o mexClassRF_predict -lgfortran -lm -DMATLAB $(MEXFLAGS)
 
-cokus: $(SRC)cokus.cpp
-	echo 'Compiling Cokus (random number generator)'
-	$(CC) $(CFLAGS) -c $(SRC)cokus.cpp -o $(BUILD)cokus.o
 
-classRF:  $(SRC)classRF.cpp
-	$(CC) $(CFLAGS) -c $(SRC)classRF.cpp -o $(BUILD)classRF.o
-#	$(CC) $(CFLAGS) classRF.o classTree.o rfutils.o rfsub.o cokus.o  -o classRF $(LDFORTRAN) 
+octave:  rfsub
+	echo -e 'Generating Octave'
+#	mex -c $(SRC)classRF.cpp -outdir $(BUILD)classRF.o -DMATLAB $(MEXFLAGS)
+	mkoctfile $(SRC)mex_ClassificationRF_train.cpp  $(SRC_FILES) rfsub.o -o mexClassRF_train -DMATLAB -DOCTAVE --mex
+	mkoctfile $(SRC)mex_ClassificationRF_predict.cpp $(SRC_FILES) rfsub.o  -o mexClassRF_predict -DMATLAB -DOCTAVE --mex
 
-classTree: $(SRC)classTree.cpp 
-	echo 'Compiling classTree.cpp'
-	$(CC) $(CFLAGS) -c $(SRC)classTree.cpp -o $(BUILD)classTree.o 
-	
 
 rfsub:	$(SRC)rfsub.f
 	echo 'Compiling rfsub.f (fortran subroutines)'
@@ -59,10 +52,6 @@ rfsub:	$(SRC)rfsub.f
 #for compiling via a cross compiler for 64 bit
 #	x86_64-pc-mingw32-gfortran -c $(SRC)rfsub.f -o rfsub.o
 	
-rfutils: $(SRC)rfutils.cpp
-	echo 'Compiling rfutils.cpp'
-	$(CC) $(CFLAGS) -c $(SRC)rfutils.cpp -o $(BUILD)rfutils.o
-
 
 clean:	
 	rm twonorm_test -rf
@@ -70,5 +59,6 @@ clean:
 	rm *~ -rf
 	rm *.mexw32 twonorm_test -rf
 	rm *.mexa64 -rf
+	rm *.mex -rf
 	rm classRF -rf
 	rm *.exe -rf
