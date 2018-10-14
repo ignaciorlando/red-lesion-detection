@@ -218,7 +218,7 @@ OK, so let's start.
 * Our segmentation method is trained on DRIVE. We are still working on a way to scale models to different resolutions to avoid retraining, but so far the best strategy we found is to normalize image sizes, resize them to a similar resolution than the one in DRIVE, and then to upsample segmentations to the original resolution. The first thing to do, then, is to manually analyze your data to estimate the scale factor. This is done my manually indicating the main vessel calibre on your data set, using ```script_measure_vessel_calibre_manually```. This script will popup an image with a rectangle around a random area of the image. You can drag that rectangle around the area where you want to zoom in, and then use double-clic to effectively zoom in there. Then, you have to draw an orthogonal line for the wider vessel. Repeat this 3 times, and for 5 images.
 * This code will output a ```downsample_value```.
 
-* Now, [download our segmentation model (3.9 MB)](https://www.dropbox.com/s/et5vplpmupbuay0/segmentation-model.rar?dl=0) trained on DRIVE and save it on a known folder.
+* Now, [download our segmentation model (3.9 MB)](https://www.dropbox.com/s/164r7we8of3i78g/segmentation-model.rar?dl=0) trained on DRIVE and save it on a known folder.
 * Edit  ```config_segment_vessels``` and assign ```scale_values = downsample_value```, and your data set name.
 * Run  ```script_segment_vessels``` .
 
