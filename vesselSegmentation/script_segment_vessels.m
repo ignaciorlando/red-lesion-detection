@@ -10,12 +10,14 @@
 
 config_segment_vessels
 
+vessel_of_interest = 8.73;
+
 % for each data set
 for d = 1 : length(dataset_names)
     
     % get current data set name and scale factor
     current_dataset = dataset_names{d};
-    %current_scale_factor = scale_values(d);
+    current_scale_factor = scale_values(d);
     
     % analyzing data set
     fprintf('Processing data set %s\n', current_dataset);
@@ -47,10 +49,14 @@ for d = 1 : length(dataset_names)
 
     end
     
-    % Measure vessel calibre
-    [calibers] = measure_vessel_calibre(fullfile(image_folder, current_dataset, '_aux'), 5, 3);
-    % Take the average and estimate scale factor
-    scale_to_downsample = vessel_of_interest / mean(mean(calibers,2));
+    if current_scale_factor < 0
+        % Measure vessel calibre
+        [calibers] = measure_vessel_calibre(fullfile(image_folder, current_dataset, '_aux'), 5, 3);
+        % Take the average and estimate scale factor
+        scale_to_downsample = vessel_of_interest / mean(mean(calibers,2));
+    else
+        scale_to_downsample = current_scale_factor;
+    end
     
     % Segment!!
     fprintf('Segmenting images\n');

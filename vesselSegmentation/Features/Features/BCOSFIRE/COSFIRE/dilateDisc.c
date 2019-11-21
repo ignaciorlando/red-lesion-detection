@@ -21,41 +21,38 @@ void dilateDisc(double *x, double *y, double *z, mwSize dataSizeY, mwSize dataSi
 
   outputSizeX = kernelLoopToX - kernelLoopFromX;
           
-    // find center position of kernel (half of kernel size)      
+    /* find center position of kernel (half of kernel size)      */
     kCenterX = kernelSizeX / 2;
     kCenterY = kernelSizeY / 2;
     
-	for(i=kernelLoopFromY; i < kernelLoopToY; i++)                // rows
+	for(i=kernelLoopFromY; i < kernelLoopToY; i++)                
 	{
-		for(j=kernelLoopFromX; j < kernelLoopToX; j++)            // columns
+		for(j=kernelLoopFromX; j < kernelLoopToX; j++)            
 		{
-			sum = 0; mx = 0.0; tmp = 0.0;                            // init to 0 before sum
-			for(m = 0; m < kernelSizeY; m++)      // kernel rows
+			sum = 0; mx = 0.0; tmp = 0.0;                            
+			for(m = 0; m < kernelSizeY; m++)      
 			{
-				//mm = kernelSizeY - 1 - m;       // row index of flipped kernel
-				for(n = 0; n < kernelSizeX; n++)  // kernel columns
+				
+				for(n = 0; n < kernelSizeX; n++)  
 				{
-					//nn = kernelSizeX - 1 - n;   // column index of flipped kernel
-					// index of input signal, used for checking boundary
+					
 					rowIndex = i + m - kCenterY;
 					colIndex = j + n - kCenterX;
 
-					// ignore input samples which are out of bound
+					
 					if(rowIndex >= 0 && rowIndex < dataSizeY && colIndex >= 0 && colIndex < dataSizeX)
                     {
                         tmp = x[dataSizeX * rowIndex + colIndex] * y[kernelSizeX * m + n];
-						//tmp = x[dataSizeX * rowIndex + colIndex];
+					
 						if (tmp > mx) {
 							mx = tmp;
 						}
                     }
-						//sum += x[dataSizeX * rowIndex + colIndex] * y[kernelSizeX * mm + nn];
+					
 				}
 			}
 			z[dataSizeX * i + j] = mx;
-            //z[outputSizeX * i + j] = (outputSizeX * (i-kernelLoopFromY)) + (j-kernelLoopFromX);
-            //z[(outputSizeX * (i-kernelLoopFromY)) + (j-kernelLoopFromX)] = mx;
-			//z[dataSizeX * i + j] = (unsigned char)((float)fabs(sum) + 0.5f);
+            
 		}
 	}
 }
@@ -104,14 +101,12 @@ void mexFunction( int nlhs, mxArray *plhs[],
   kernelLoopToX = mxGetScalar(prhs[5]); 
 
   /*  get the dimensions of the matrix input y2 */
-//   y2mrows = mxGetM(prhs[2]);
-//   y2ncols = mxGetN(prhs[2]);
   
   /*  set the output pointer to the output matrix */
   plhs[0] = mxCreateDoubleMatrix(xmrows,xncols, mxREAL);
   
   /*  create a C pointer to a copy of the output matrix */
-//   z1 = mxGetPr(plhs[0]);
+
    
   z = mxGetPr(plhs[0]);
   /*  call the C subroutine */
